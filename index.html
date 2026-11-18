@@ -19,7 +19,7 @@ a{color:var(--pink)}header{position:sticky;top:0;z-index:5;background:#17111feF;
   flex-shrink:0;
   background:#21182b;
 }
-.wrap{max-width:1000px;margin:20px auto;padding:0 13px}.rainbow{height:4px;background:linear-gradient(90deg,#e86d70,#f39a54,#fff0e9,#f28db2,#a78bfa,#38bdf8)}
+.wrap{max-width:1400px;margin:20px auto;padding:0 13px}.rainbow{height:4px;background:linear-gradient(90deg,#e86d70,#f39a54,#fff0e9,#f28db2,#a78bfa,#38bdf8)}
 .card{background:linear-gradient(145deg,#2b2037,#1d1727);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 9px 30px #08050d55}
 h1,h2,h3,p{margin-top:0}h1{font-size:28px;line-height:1.15}h2{font-size:20px;margin-bottom:10px}h3{font-size:16px;margin-bottom:7px}
 .muted,.small{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px;color:var(--muted)}
@@ -28,6 +28,49 @@ input,textarea,select,button{font:inherit}input,textarea,select{width:100%;paddi
 button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(100deg,var(--pink),var(--lav));color:#24152d;font-weight:800;margin:3px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#3a2b47;color:white;border:1px solid #6b5479}.danger{background:#6d304d;color:white}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.row .fit{flex:0 0 auto}.hidden{display:none!important}.notice{padding:11px;background:#392941;border-radius:11px;margin:10px 0}.msg{font-size:13px;color:#ffd0e8;white-space:pre-wrap;min-height:18px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tabs button{flex:1;min-width:90px}.tabactive{outline:2px solid var(--white);outline-offset:2px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.member{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#1b1424}.member img{width:100%;height:115px;object-fit:cover;background:#382941}.member .inside{padding:12px}.avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;background:#493451;border:4px solid #ffb4dc;box-shadow:0 0 0 3px #3d2a4a}.cover{height:190px;width:100%;object-fit:cover;background:linear-gradient(120deg,#8e477e,#d88e9d,#7a67a7);border-radius:14px}.profilehead{display:flex;gap:14px;align-items:end;margin-top:-48px;padding:0 14px;position:relative}.profilehead .avatar{width:105px;height:105px}.profilemeta{padding-bottom:7px}.pixel{color:var(--pink);letter-spacing:2px}.quote{border-left:3px solid var(--pink);padding:8px 12px;background:#ffffff09;font-style:italic}.post{border-top:1px dashed #70567d;padding:13px 0}.post p{white-space:pre-wrap;margin:8px 0}.postname{color:#ffc2e2;font-weight:800}.pill{display:inline-block;background:#493454;border:1px solid #70577c;border-radius:99px;padding:3px 9px;margin:3px;font-size:12px}.empty{text-align:center;padding:20px;color:var(--muted)}footer{text-align:center;color:#bbaec4;font-size:12px;padding:25px}
 @media(min-width:760px){.layout{display:grid;grid-template-columns: minmax(0,1.5fr) minmax(250px,.8fr);gap:14px}.layout .card{margin-top:0}.cover{height:235px}}
+/* VYSSARA HUB — Y2K THREE-COLUMN DASHBOARD */
+.dashboard-grid{
+ display:grid;
+ grid-template-columns:210px minmax(0,1fr) 220px;
+ gap:14px;
+ align-items:start;
+}
+.dashboard-main{min-width:0}
+.dashboard-side{
+ background:linear-gradient(145deg,#2b1b3b,#191124);
+ border:1px solid #694477;
+ border-radius:13px;
+ padding:14px;
+ margin:12px 0;
+ box-shadow:0 8px 25px #05020b88;
+}
+.dashboard-side h3{
+ color:#ffd0ef;
+ border-bottom:1px dashed #805b91;
+ padding-bottom:8px;
+}
+.side-link{
+ display:block;
+ padding:8px;
+ margin:5px 0;
+ background:#382647;
+ border:1px solid #694477;
+ border-radius:8px;
+ color:#ffe1f4;
+ text-decoration:none;
+}
+.side-link:hover{background:#56345f}
+.side-star{color:#ff83c2}
+@media(max-width:900px){
+ .dashboard-grid{grid-template-columns:160px minmax(0,1fr);gap:8px}
+ .dashboard-right{display:block;grid-column:1/-1}
+}
+@media(max-width:600px){
+ .dashboard-grid{display:block}
+ .dashboard-left{display:none}
+ .dashboard-right{display:block}
+}
+
 </style>
 </head>
 <body>
@@ -55,11 +98,52 @@ button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(
 <p class="tiny">Membership is self-attested, not identity-verified. Never share passwords, financial details, or private information. This is an early community beta and needs active moderation.</p>
 </section>
 
+
 <section id="app" class="hidden">
+<div class="dashboard-grid">
+
+<!-- LEFT SIDEBAR -->
+<aside class="dashboard-side dashboard-left">
+<h3>✧ YOUR CORNER</h3>
+<p class="small">Welcome to your little universe!</p>
+
+<div class="quote">
+Your identity. Your universe. ♡
+</div>
+
+<h3 style="margin-top:20px">♡ QUICK LINKS</h3>
+<a class="side-link" href="#" onclick="document.getElementById('myTab').click();return false;">✿ My Space</a>
+<a class="side-link" href="#" onclick="document.getElementById('membersTab').click();return false;">♡ Members</a>
+<a class="side-link" href="#" onclick="document.getElementById('feedTab').click();return false;">✧ Community</a>
+
+<h3 style="margin-top:20px">✦ SPACE VIBES</h3>
+<p class="small">Be yourself. Find your people. Make memories.</p>
+<div class="pill">#SapphicSpace</div>
+<div class="pill">#BeYourself</div>
+<div class="pill">#GoodVibes</div>
+
+<div style="text-align:center;margin-top:20px;color:var(--pink)">
+✧･ﾟ: *✧･ﾟ:*
+</div>
+</aside>
+
+<!-- CENTER CONTENT -->
+<div class="dashboard-main">
+
 <div class="card">
-<div class="row"><div><div class="pixel">✧ WELCOME BACK ✧</div><h1 style="margin:2px 0">Your little corner of the web</h1><div id="hello" class="small"></div></div><button id="logout" class="secondary fit">Log out</button></div>
+<div class="row">
+<div>
+<div class="pixel">✧ WELCOME BACK ✧</div>
+<h1 style="margin:2px 0">Your little corner of the web</h1>
+<div id="hello" class="small"></div>
+</div>
+<button id="logout" class="secondary fit">Log out</button>
+</div>
+
 <div class="tabs">
-<button id="myTab">My Space</button><button id="membersTab" class="secondary">Members</button><button id="feedTab" class="secondary">Community</button>
+<button id="myTab">My Space</button>
+<button id="membersTab" class="secondary">Members</button>
+<button id="feedTab" class="secondary">Community</button>
 </div>
 </div>
 
@@ -68,41 +152,144 @@ button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(
 <div>
 <div class="card">
 <img id="coverPreview" class="cover" alt="Your cover image">
-<div class="profilehead"><img id="avatarPreview" class="avatar" alt="Your profile photo"><div class="profilemeta"><h2 id="profileTitle" style="margin:0">My Space</h2><div id="moodPreview" class="small"></div></div></div>
-<div style="padding:12px 4px 0"><p id="bioPreview" class="muted"></p><div id="quotePreview" class="quote hidden"></div><div id="interestPreview"></div></div>
+<div class="profilehead">
+<img id="avatarPreview" class="avatar" alt="Your profile photo">
+<div class="profilemeta">
+<h2 id="profileTitle" style="margin:0">My Space</h2>
+<div id="moodPreview" class="small"></div>
 </div>
-<div class="card"><h2>✧ My updates</h2><div id="myPosts"></div></div>
 </div>
+<div style="padding:12px 4px 0">
+<p id="bioPreview" class="muted"></p>
+<div id="quotePreview" class="quote hidden"></div>
+<div id="interestPreview"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>✧ My updates</h2>
+<div id="myPosts"></div>
+</div>
+</div>
+
 <div>
 <div class="card">
 <h2>♡ Customize My Space</h2>
-<label>Display name</label><input id="editName" maxlength="40">
-<label>Short bio</label><textarea id="editBio" maxlength="300"></textarea>
-<label>About me</label><textarea id="aboutMe" maxlength="600" placeholder="Tell the community a little more about yourself..."></textarea>
-<label>Current mood</label><input id="mood" maxlength="60" placeholder="e.g. soft girl era ✨">
-<label>Interests (separate with commas)</label><input id="interests" maxlength="250" placeholder="music, movies, art, coffee">
-<label>Favorite quote</label><textarea id="favoriteQuote" maxlength="180" placeholder="A quote that feels like you..."></textarea>
-<label>Profile picture</label><input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp">
-<label>Cover image</label><input id="coverFile" type="file" accept="image/jpeg,image/png,image/webp">
-<button id="saveProfile">Save my space</button><div id="profileMsg" class="msg"></div>
+<label>Display name</label>
+<input id="editName" maxlength="40">
+<label>Short bio</label>
+<textarea id="editBio" maxlength="300"></textarea>
+<label>About me</label>
+<textarea id="aboutMe" maxlength="600" placeholder="Tell the community a little more about yourself..."></textarea>
+<label>Current mood</label>
+<input id="mood" maxlength="60" placeholder="e.g. soft girl era ✨">
+<label>Interests (separate with commas)</label>
+<input id="interests" maxlength="250" placeholder="music, movies, art, coffee">
+<label>Favorite quote</label>
+<textarea id="favoriteQuote" maxlength="180" placeholder="A quote that feels like you..."></textarea>
+<label>Profile picture</label>
+<input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp">
+<label>Cover image</label>
+<input id="coverFile" type="file" accept="image/jpeg,image/png,image/webp">
+<button id="saveProfile">Save my space</button>
+<div id="profileMsg" class="msg"></div>
 <p class="tiny">Use JPG, PNG, or WebP images up to 5 MB. Your profile images are publicly viewable because this is a public community profile.</p>
 </div>
-<div class="card"><h2>✦ Quick note</h2><p class="small">Your My Space page is your own little profile. Keep personal contact details private. You can change your photos and intro whenever you like.</p></div>
+
+<div class="card">
+<h2>✦ Quick note</h2>
+<p class="small">Your My Space page is your own little profile. Keep personal contact details private. You can change your photos and intro whenever you like.</p>
+</div>
 </div>
 </div>
 </section>
 
 <section id="members" class="hidden">
-<div class="card"><div class="row"><div><h2>♡ Member directory</h2><p class="small">Find people and visit their spaces.</p></div><input id="memberSearch" class="fit" style="max-width:240px" placeholder="Search members"></div><div id="memberList" class="grid"></div><div id="memberMsg" class="msg"></div></div>
+<div class="card">
+<div class="row">
+<div>
+<h2>♡ Member directory</h2>
+<p class="small">Find people and visit their spaces.</p>
+</div>
+<input id="memberSearch" class="fit" style="max-width:240px" placeholder="Search members">
+</div>
+<div id="memberList" class="grid"></div>
+<div id="memberMsg" class="msg"></div>
+</div>
+
 <div id="visitorSpace" class="hidden">
-<div class="card"><button id="backMembers" class="secondary">← Back to members</button><img id="visitorCover" class="cover" alt="Member cover"><div class="profilehead"><img id="visitorAvatar" class="avatar" alt="Member profile photo"><div class="profilemeta"><h2 id="visitorName" style="margin:0"></h2><div id="visitorMood" class="small"></div></div></div><div style="padding:12px 4px"><p id="visitorBio" class="muted"></p><h3>About me</h3><p id="visitorAbout"></p><div id="visitorInterests"></div><div id="visitorQuote" class="quote hidden"></div></div></div>
+<div class="card">
+<button id="backMembers" class="secondary">← Back to members</button>
+<img id="visitorCover" class="cover" alt="Member cover">
+<div class="profilehead">
+<img id="visitorAvatar" class="avatar" alt="Member profile photo">
+<div class="profilemeta">
+<h2 id="visitorName" style="margin:0"></h2>
+<div id="visitorMood" class="small"></div>
+</div>
+</div>
+<div style="padding:12px 4px">
+<p id="visitorBio" class="muted"></p>
+<h3>About me</h3>
+<p id="visitorAbout"></p>
+<div id="visitorInterests"></div>
+<div id="visitorQuote" class="quote hidden"></div>
+</div>
+</div>
 </div>
 </section>
 
 <section id="community" class="hidden">
-<div class="layout"><div class="card"><h2>✧ Share an update</h2><textarea id="postText" maxlength="2000" placeholder="What's on your mind?"></textarea><button id="publish">Publish post</button><div id="postMsg" class="msg"></div><h2 style="margin-top:20px">Community feed</h2><button id="refresh" class="secondary">Refresh feed</button><div id="feed" class="muted">Loading posts…</div></div><div class="card"><h2>♡ Community note</h2><p class="small">Be kind, respect boundaries, and do not post someone else's private information or images without permission. Report harmful behavior to the community moderators.</p></div></div>
+<div class="layout">
+<div class="card">
+<h2>✧ Share an update</h2>
+<textarea id="postText" maxlength="2000" placeholder="What's on your mind?"></textarea>
+<button id="publish">Publish post</button>
+<div id="postMsg" class="msg"></div>
+<h2 style="margin-top:20px">Community feed</h2>
+<button id="refresh" class="secondary">Refresh feed</button>
+<div id="feed" class="muted">Loading posts…</div>
+</div>
+
+<div class="card">
+<h2>♡ Community note</h2>
+<p class="small">Be kind, respect boundaries, and do not post someone else's private information or images without permission. Report harmful behavior to the community moderators.</p>
+</div>
+</div>
 </section>
+
+</div>
+
+<!-- RIGHT SIDEBAR -->
+<aside class="dashboard-side dashboard-right">
+<h3>♡ COMMUNITY BOARD</h3>
+<p class="small">A little space for everyone to shine.</p>
+
+<div class="card" style="padding:11px;margin:10px 0">
+<div class="pixel">✧ REMEMBER ✧</div>
+<p class="small" style="margin:7px 0 0">You belong here. Be kind to yourself and others.</p>
+</div>
+
+<h3>✦ TRENDING</h3>
+<div class="pill">#Pride</div>
+<div class="pill">#Music</div>
+<div class="pill">#Friendship</div>
+<div class="pill">#SelfLove</div>
+
+<h3 style="margin-top:20px">♡ COMMUNITY RULES</h3>
+<p class="small">✿ Respect everyone</p>
+<p class="small">✿ Protect personal privacy</p>
+<p class="small">✿ Ask before sharing photos</p>
+<p class="small">✿ Keep this space welcoming</p>
+
+<div style="text-align:center;margin-top:22px;color:var(--pink)">
+✧ ♡ ✧
+</div>
+</aside>
+
+</div>
 </section>
+
 </main>
 <footer><div class="rainbow" style="margin-bottom:14px"></div>VYSSARA HUB · Your identity. Your universe. · made with ♡</footer>
 
