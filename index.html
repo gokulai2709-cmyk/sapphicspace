@@ -1,21 +1,269 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#21152b"><title>SapphicSpace 2.0 — Lesbian Community</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{color-scheme:dark;--bg:#120e18;--card:#211a2b;--line:#493852;--pink:#ff83c2;--lav:#c4a5ff}{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#49244d,transparent 38%),var(--bg);color:#fff5ff;font:16px system-ui}header{position:sticky;top:0;background:#191321ed;border-bottom:1px solid var(--line);padding:13px;display:flex;align-items:center;gap:10px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#f28db2 0 20%,#f39a54 20% 40%,#fff0e9 40% 58%,#a78bfa 58% 78%,#38bdf8 78%);display:grid;place-items:center;color:#24152d;font-size:22px}.brand{font-weight:850;font-size:21px}.wrap{max-width:720px;margin:22px auto;padding:0 14px}.card{background:linear-gradient(145deg,#281e33,#1d1726);border:1px solid var(--line);border-radius:19px;padding:18px;margin:14px 0}h1{font-size:30px;margin:0 0 8px}h2{font-size:20px;margin:0 0 12px}.muted,.small{color:#c5b6cd}.small{font-size:13px}input,textarea,button{font:inherit}input,textarea{width:100%;padding:12px;margin:6px 0 12px;border:1px solid #594767;border-radius:11px;background:#120e18;color:white}textarea{min-height:90px}button{border:0;border-radius:11px;padding:12px 16px;background:linear-gradient(100deg,var(--pink),var(--lav));color:#21152b;font-weight:750;margin:4px;cursor:pointer}.secondary{background:#392c43;color:white;border:1px solid #604c6d}.danger{background:#672c45;color:white}.row{display:flex;gap:8px;flex-wrap:wrap}.row>{flex:1}.hidden{display:none!important}.notice{padding:12px;background:#382941;border-radius:11px;margin:12px 0}.msg{font-size:13px;color:#f8c9e5;white-space:pre-wrap}.post{border-top:1px solid var(--line);padding:14px 0}.post p{white-space:pre-wrap}.rainbow{height:4px;background:linear-gradient(90deg,#e86d70 0%,#f39a54 22%,#fff0e9 42%,#f28db2 62%,#a78bfa 82%,#38bdf8 100%)}footer{text-align:center;color:#bbaec4;font-size:12px;padding:25px}
-@media(min-width:900px){.wrap{max-width:900px}.card{padding:22px}.brand{font-size:23px}}\n</style></head><body><div class="rainbow"></div><header><div class="logo">✦</div><div class="brand">SapphicSpace</div></header><main class="wrap">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#21152b">
+<title>SapphicSpace — My Space</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{color-scheme:dark;--bg:#130e1b;--panel:#21182b;--panel2:#2c2038;--line:#574064;--pink:#ff83c2;--coral:#f28d83;--orange:#f5a45f;--lav:#c4a5ff;--white:#fff3f8;--muted:#cbbbd4;--green:#9fe3c0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#49244d,transparent 35%),radial-gradient(circle at 95% 15%,#30265b,transparent 30%),var(--bg);color:var(--white);font:15px/1.5 "Trebuchet MS",system-ui,sans-serif}
+a{color:var(--pink)}header{position:sticky;top:0;z-index:5;background:#17111feF;border-bottom:1px solid var(--line);padding:11px 15px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px)}
+.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#f28d83 0 20%,#f5a45f 20% 40%,#fff3f8 40% 55%,#ff83c2 55% 72%,#c4a5ff 72%);display:grid;place-items:center;color:#28152e;font-size:23px}.brand{font-weight:900;font-size:21px;letter-spacing:.4px}.brand span{color:var(--pink)}
+.wrap{max-width:1000px;margin:20px auto;padding:0 13px}.rainbow{height:4px;background:linear-gradient(90deg,#e86d70,#f39a54,#fff0e9,#f28db2,#a78bfa,#38bdf8)}
+.card{background:linear-gradient(145deg,#2b2037,#1d1727);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 9px 30px #08050d55}
+h1,h2,h3,p{margin-top:0}h1{font-size:28px;line-height:1.15}h2{font-size:20px;margin-bottom:10px}h3{font-size:16px;margin-bottom:7px}
+.muted,.small{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px;color:var(--muted)}
+label{display:block;font-size:13px;color:#ead9f0;margin:8px 0 3px}
+input,textarea,select,button{font:inherit}input,textarea,select{width:100%;padding:11px 12px;margin:4px 0 10px;border:1px solid #654d73;border-radius:11px;background:#140f1b;color:white;outline:none}textarea{min-height:85px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 2px #ff83c233}
+button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(100deg,var(--pink),var(--lav));color:#24152d;font-weight:800;margin:3px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#3a2b47;color:white;border:1px solid #6b5479}.danger{background:#6d304d;color:white}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.row .fit{flex:0 0 auto}.hidden{display:none!important}.notice{padding:11px;background:#392941;border-radius:11px;margin:10px 0}.msg{font-size:13px;color:#ffd0e8;white-space:pre-wrap;min-height:18px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tabs button{flex:1;min-width:90px}.tabactive{outline:2px solid var(--white);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.member{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#1b1424}.member img{width:100%;height:115px;object-fit:cover;background:#382941}.member .inside{padding:12px}.avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;background:#493451;border:4px solid #ffb4dc;box-shadow:0 0 0 3px #3d2a4a}.cover{height:190px;width:100%;object-fit:cover;background:linear-gradient(120deg,#8e477e,#d88e9d,#7a67a7);border-radius:14px}.profilehead{display:flex;gap:14px;align-items:end;margin-top:-48px;padding:0 14px;position:relative}.profilehead .avatar{width:105px;height:105px}.profilemeta{padding-bottom:7px}.pixel{color:var(--pink);letter-spacing:2px}.quote{border-left:3px solid var(--pink);padding:8px 12px;background:#ffffff09;font-style:italic}.post{border-top:1px dashed #70567d;padding:13px 0}.post p{white-space:pre-wrap;margin:8px 0}.postname{color:#ffc2e2;font-weight:800}.pill{display:inline-block;background:#493454;border:1px solid #70577c;border-radius:99px;padding:3px 9px;margin:3px;font-size:12px}.empty{text-align:center;padding:20px;color:var(--muted)}footer{text-align:center;color:#bbaec4;font-size:12px;padding:25px}
+@media(min-width:760px){.layout{display:grid;grid-template-columns: minmax(0,1.5fr) minmax(250px,.8fr);gap:14px}.layout .card{margin-top:0}.cover{height:235px}}
+</style>
+</head>
+<body>
+<div class="rainbow"></div>
+<header><div class="logo">✦</div><div class="brand">Sapphic<span>Space</span></div><div class="small" style="margin-left:auto">your corner of the internet ♡</div></header>
+<main class="wrap">
+<section id="auth" class="card hidden">
+<h1><span style="color:var(--pink)">Welcome</span> to SapphicSpace ✦</h1>
+<p class="muted">A little retro corner for lesbians to meet, express themselves, and make their own space.</p>
+<div class="tabs"><button id="signupTab">Create account</button><button id="loginTab" class="secondary">Log in</button></div>
+<div id="signup">
+<label>Display name</label><input id="name" maxlength="40" placeholder="Your name in the space">
+<label>Email</label><input id="email" type="email" placeholder="you@example.com">
+<label>Password (8+ characters)</label><input id="password" type="password" minlength="8">
+<label>Short intro (optional)</label><textarea id="bio" maxlength="300" placeholder="A little about you..."></textarea>
+<label><input id="agree" type="checkbox" style="width:auto"> I am an adult, identify as a lesbian, and agree to treat members respectfully.</label>
+<button id="create">Create my space</button>
+</div>
+<div id="login" class="hidden"><label>Email</label><input id="lemail" type="email"><label>Password</label><input id="lpass" type="password"><button id="enter">Log in</button></div>
+<div id="authMsg" class="msg"></div>
+<p class="tiny">Membership is self-attested, not identity-verified. Never share passwords, financial details, or private information. This is an early community beta and needs active moderation.</p>
+</section>
 
-<section id="setup" class="card"><h1><span style="color:#ff83c2">Sapphic</span><span style="color:#c4a5ff">Space</span> 🌈</h1><p class="muted">A community space celebrating lesbians, tomboys, butch, femme and every way of being yourself.</p><div class="notice small">Connect your Supabase project. Use only your Project URL and Publishable key. Never enter a secret or service-role key.</div><label>Project URL</label><input id="url" placeholder="https://your-project.supabase.co"><label>Publishable key</label><input id="key" placeholder="sb_publishable_..."><button id="connect">Connect</button><button class="secondary" id="clear">Clear saved details</button><div id="setupMsg" class="msg"></div></section>  
-<section id="auth" class="card hidden"><h2>Welcome to the community</h2><div class="row"><button id="signupTab">Sign up</button><button class="secondary" id="loginTab">Log in</button></div><div id="signup"><label>Display name</label><input id="name" maxlength="40" placeholder="Display name"><label>Email</label><input id="email" type="email" placeholder="you@example.com"><label>Password (8+ characters)</label><input id="password" type="password" minlength="8"><label>Bio (optional)</label><textarea id="bio" maxlength="300" placeholder="A little about you"></textarea><label class="small"><input id="agree" type="checkbox" style="width:auto"> I am an adult, identify as a lesbian, and agree to treat others respectfully.</label><button id="create">Create account</button></div><div id="login" class="hidden"><label>Email</label><input id="lemail" type="email"><label>Password</label><input id="lpass" type="password"><button id="enter">Log in</button></div><div id="authMsg" class="msg"></div><p class="small">Membership is self-attested, not identity-verified. Do not share private or sensitive information. This early beta needs active moderation.</p></section>  
-<section id="home" class="hidden"><div class="card"><div class="row"><div><h2>Your space</h2><div id="hello" class="small"></div></div><button class="secondary" id="logout">Log out</button></div></div><div class="card"><h2>Share an update</h2><textarea id="postText" maxlength="2000" placeholder="What's on your mind?"></textarea><button id="publish">Publish post</button><div id="postMsg" class="msg"></div></div><div class="card"><div class="row"><h2>Community feed</h2><button class="secondary" id="refresh">Refresh</button></div><div id="feed" class="muted">No posts loaded.</div></div><div class="card"><h2>Edit your profile</h2><label>Display name</label><input id="editName"><label>Bio</label><textarea id="editBio" maxlength="300"></textarea><button id="save">Save profile</button><div id="profileMsg" class="msg"></div></div></section>  
-</main><footer><div class="rainbow" style="margin-bottom:15px"></div>SapphicSpace · Early beta · Community guidelines and moderation required before public launch.</footer>  
-<script>  
-(()=>{const $=id=>document.getElementById(id);let sb=null,user=null,prof=null;const say=(id,t)=>$(id).textContent=t;const show=(id,v)=>$(id).classList.toggle('hidden',!v);const U='ss_url',K='ss_key';$('url').value='https://irqitazxawwumsxstjtw.supabase.co';$('key').value='sb_publishable_bV9TAewJnRDjFmUVy616aA_TQVKM_VN';  
-function views(){show('setup',!sb);show('auth',!!sb&&!user);show('home',!!sb&&!!user)}  
-async function connect(){let u=$('url').value.trim().replace(/\/+$/,''),k=$('key').value.trim();if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(u)){say('setupMsg','Enter your complete Project URL.');return}if(!k.startsWith('sb_publishable_')){say('setupMsg','Use the Publishable key beginning sb_publishable_.');return}if(!window.supabase){say('setupMsg','Supabase library did not load. Check internet and reload.');return}try{sb=window.supabase.createClient(u,k);let {error}=await sb.auth.getSession();if(error)throw error;localStorage.setItem(U,u);localStorage.setItem(K,k);say('setupMsg','Connected.');views();let {data}=await sb.auth.getSession();if(data.session)await signed(data.session.user)}catch(e){sb=null;say('setupMsg','Connection error: '+e.message)}}  
-async function signed(u){user=u;let {data,error}=await sb.from('profiles').select('*').eq('id',u.id).maybeSingle();if(error)say('authMsg','Profile read error: '+error.message);prof=data||null;$('hello').textContent='Signed in as '+(prof?.display_name||u.email);$('editName').value=prof?.display_name||'';$('editBio').value=prof?.bio||'';views();feed()}  
-async function signup(){let n=$('name').value.trim(),e=$('email').value.trim(),p=$('password').value;if(!n||!e||p.length<8||!$('agree').checked){say('authMsg','Enter a name and email, use an 8+ character password, and check the community agreement.');return}try{let {data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{display_name:n}}});if(error)throw error;if(data.session){let {error:pe}=await sb.from('profiles').upsert({id:data.user.id,display_name:n,bio:$('bio').value.trim()});if(pe)throw pe;await signed(data.user)}else say('authMsg','Check your email to confirm your account, then log in. If confirmation is enabled, create your profile after sign-in.')}catch(e){say('authMsg',e.message)}}  
-async function login(){try{let {data,error}=await sb.auth.signInWithPassword({email:$('lemail').value.trim(),password:$('lpass').value});if(error)throw error;await signed(data.user)}catch(e){say('authMsg',e.message)}}  
-async function feed(){ $('feed').textContent='Loading…';let {data,error}=await sb.from('posts').select('id,user_id,body,created_at').order('created_at',{ascending:false}).limit(50);if(error){$('feed').textContent=error.message;return}if(!data.length){$('feed').textContent='No posts yet. Be the first to share something kind.';return}let ids=[...new Set(data.map(x=>x.user_id))],r=await sb.from('profiles').select('id,display_name').in('id',ids),names=Object.fromEntries((r.data||[]).map(x=>[x.id,x.display_name]));$('feed').replaceChildren();for(let p of data){let a=document.createElement('article');a.className='post';let h=document.createElement('strong');h.textContent=names[p.user_id]||'Community member';let t=document.createElement('div');t.className='small';t.textContent=new Date(p.created_at).toLocaleString();let b=document.createElement('p');b.textContent=p.body;a.append(h,t,b);if(p.user_id===user.id){let d=document.createElement('button');d.className='danger';d.textContent='Delete';d.onclick=async()=>{if(confirm('Delete this post?')){let x=await sb.from('posts').delete().eq('id',p.id);if(x.error)alert(x.error.message);else feed()}};a.append(d)}$('feed').append(a)}}  
-async function publish(){let body=$('postText').value.trim();if(!body)return say('postMsg','Write something first.');let {error}=await sb.from('posts').insert({user_id:user.id,body});if(error)say('postMsg',error.message);else{$('postText').value='';say('postMsg','Post published.');feed()}}  
-async function save(){let n=$('editName').value.trim(),b=$('editBio').value.trim();if(!n)return say('profileMsg','Display name is required.');let {error}=await sb.from('profiles').upsert({id:user.id,display_name:n,bio:b});if(error)say('profileMsg',error.message);else{say('profileMsg','Profile saved.');signed(user)}}  
-$('connect').onclick=connect;$('clear').onclick=()=>{localStorage.removeItem(U);localStorage.removeItem(K);$('url').value='';$('key').value='';say('setupMsg','Saved details cleared.')};$('signupTab').onclick=()=>{show('signup',true);show('login',false);$('signupTab').classList.remove('secondary');$('loginTab').classList.add('secondary')};$('loginTab').onclick=()=>{show('signup',false);show('login',true);$('loginTab').classList.remove('secondary');$('signupTab').classList.add('secondary')};$('create').onclick=signup;$('enter').onclick=login;$('publish').onclick=publish;$('refresh').onclick=feed;$('save').onclick=save;$('logout').onclick=async()=>{await sb.auth.signOut();user=null;prof=null;views()};if($('url').value&&$('key').value)connect();  
-})();  
-</script></body></html>
+<section id="app" class="hidden">
+<div class="card">
+<div class="row"><div><div class="pixel">✧ WELCOME BACK ✧</div><h1 style="margin:2px 0">Your little corner of the web</h1><div id="hello" class="small"></div></div><button id="logout" class="secondary fit">Log out</button></div>
+<div class="tabs">
+<button id="myTab">My Space</button><button id="membersTab" class="secondary">Members</button><button id="feedTab" class="secondary">Community</button>
+</div>
+</div>
+
+<section id="mySpace">
+<div class="layout">
+<div>
+<div class="card">
+<img id="coverPreview" class="cover" alt="Your cover image">
+<div class="profilehead"><img id="avatarPreview" class="avatar" alt="Your profile photo"><div class="profilemeta"><h2 id="profileTitle" style="margin:0">My Space</h2><div id="moodPreview" class="small"></div></div></div>
+<div style="padding:12px 4px 0"><p id="bioPreview" class="muted"></p><div id="quotePreview" class="quote hidden"></div><div id="interestPreview"></div></div>
+</div>
+<div class="card"><h2>✧ My updates</h2><div id="myPosts"></div></div>
+</div>
+<div>
+<div class="card">
+<h2>♡ Customize My Space</h2>
+<label>Display name</label><input id="editName" maxlength="40">
+<label>Short bio</label><textarea id="editBio" maxlength="300"></textarea>
+<label>About me</label><textarea id="aboutMe" maxlength="600" placeholder="Tell the community a little more about yourself..."></textarea>
+<label>Current mood</label><input id="mood" maxlength="60" placeholder="e.g. soft girl era ✨">
+<label>Interests (separate with commas)</label><input id="interests" maxlength="250" placeholder="music, movies, art, coffee">
+<label>Favorite quote</label><textarea id="favoriteQuote" maxlength="180" placeholder="A quote that feels like you..."></textarea>
+<label>Profile picture</label><input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp">
+<label>Cover image</label><input id="coverFile" type="file" accept="image/jpeg,image/png,image/webp">
+<button id="saveProfile">Save my space</button><div id="profileMsg" class="msg"></div>
+<p class="tiny">Use JPG, PNG, or WebP images up to 5 MB. Your profile images are publicly viewable because this is a public community profile.</p>
+</div>
+<div class="card"><h2>✦ Quick note</h2><p class="small">Your My Space page is your own little profile. Keep personal contact details private. You can change your photos and intro whenever you like.</p></div>
+</div>
+</div>
+</section>
+
+<section id="members" class="hidden">
+<div class="card"><div class="row"><div><h2>♡ Member directory</h2><p class="small">Find people and visit their spaces.</p></div><input id="memberSearch" class="fit" style="max-width:240px" placeholder="Search members"></div><div id="memberList" class="grid"></div><div id="memberMsg" class="msg"></div></div>
+<div id="visitorSpace" class="hidden">
+<div class="card"><button id="backMembers" class="secondary">← Back to members</button><img id="visitorCover" class="cover" alt="Member cover"><div class="profilehead"><img id="visitorAvatar" class="avatar" alt="Member profile photo"><div class="profilemeta"><h2 id="visitorName" style="margin:0"></h2><div id="visitorMood" class="small"></div></div></div><div style="padding:12px 4px"><p id="visitorBio" class="muted"></p><h3>About me</h3><p id="visitorAbout"></p><div id="visitorInterests"></div><div id="visitorQuote" class="quote hidden"></div></div></div>
+</div>
+</section>
+
+<section id="community" class="hidden">
+<div class="layout"><div class="card"><h2>✧ Share an update</h2><textarea id="postText" maxlength="2000" placeholder="What's on your mind?"></textarea><button id="publish">Publish post</button><div id="postMsg" class="msg"></div><h2 style="margin-top:20px">Community feed</h2><button id="refresh" class="secondary">Refresh feed</button><div id="feed" class="muted">Loading posts…</div></div><div class="card"><h2>♡ Community note</h2><p class="small">Be kind, respect boundaries, and do not post someone else's private information or images without permission. Report harmful behavior to the community moderators.</p></div></div>
+</section>
+</section>
+</main>
+<footer><div class="rainbow" style="margin-bottom:14px"></div>SapphicSpace · My Space beta · made with ♡</footer>
+
+<script>
+(()=> {
+'use strict';
+const SUPABASE_URL='https://irqitazxawwumsxstjtw.supabase.co';
+const SUPABASE_KEY='sb_publishable_bV9TAewJnRDjFmUVy616aA_TQVKM_VN';
+const $=id=>document.getElementById(id);
+const say=(id,msg)=>$(id).textContent=msg;
+const show=(id,on)=>$(id).classList.toggle('hidden',!on);
+const FALLBACK_AVATAR='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><rect width="100%" height="100%" fill="#493451"/><text x="50%" y="55%" font-size="90" text-anchor="middle" fill="#ffb4dc">✿</text></svg>');
+const FALLBACK_COVER='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320"><defs><linearGradient id="g"><stop stop-color="#8e477e"/><stop offset=".5" stop-color="#d88e9d"/><stop offset="1" stop-color="#7a67a7"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-size="42" text-anchor="middle" fill="#fff3f8">✧ your space ✧</text></svg>');
+let sb=null,user=null,profile=null,memberRows=[];
+function views(){show('auth',!user);show('app',!!user)}
+function tab(which){
+ for(const [id,on] of [['mySpace',which==='my'],['members',which==='members'],['community',which==='feed']])show(id,on);
+ $('myTab').classList.toggle('secondary',which!=='my');$('membersTab').classList.toggle('secondary',which!=='members');$('feedTab').classList.toggle('secondary',which!=='feed');
+ show('visitorSpace',false);
+ if(which==='members')loadMembers();
+ if(which==='feed')loadFeed();
+ if(which==='my')loadMyPosts();
+}
+function publicUrl(path){if(!path)return '';return sb.storage.from('member-photos').getPublicUrl(path).data.publicUrl}
+function imageUrl(path,fallback){return path?publicUrl(path):fallback}
+function setOwnPreview(p){
+ $('profileTitle').textContent=p.display_name||'My Space';
+ $('avatarPreview').src=imageUrl(p.avatar_path,FALLBACK_AVATAR);
+ $('coverPreview').src=imageUrl(p.cover_path,FALLBACK_COVER);
+ $('bioPreview').textContent=p.bio||'Add a short bio to introduce yourself.';
+ $('moodPreview').textContent=p.mood?'✦ '+p.mood:'';
+ $('quotePreview').textContent=p.favorite_quote||'';show('quotePreview',!!p.favorite_quote);
+ $('interestPreview').replaceChildren();
+ if(p.interests)(p.interests.split(',').map(x=>x.trim()).filter(Boolean)).forEach(x=>{let s=document.createElement('span');s.className='pill';s.textContent=x;$('interestPreview').append(s)});
+}
+async function loadProfile(){
+ const {data,error}=await sb.from('profiles').select('*').eq('id',user.id).maybeSingle();
+ if(error)throw error;
+ profile=data||{id:user.id,display_name:user.user_metadata?.display_name||user.email?.split('@')[0]||'Member',bio:''};
+ $('hello').textContent='Signed in as '+(profile.display_name||user.email);
+ $('editName').value=profile.display_name||'';
+ $('editBio').value=profile.bio||'';
+ $('aboutMe').value=profile.about_me||'';
+ $('mood').value=profile.mood||'';
+ $('interests').value=profile.interests||'';
+ $('favoriteQuote').value=profile.favorite_quote||'';
+ setOwnPreview(profile);
+}
+async function enterApp(u){
+ user=u;views();
+ try{await loadProfile();tab('my');}
+ catch(e){say('profileMsg','Could not load your profile: '+e.message);}
+}
+async function signup(){
+ const n=$('name').value.trim(),email=$('email').value.trim(),pass=$('password').value;
+ if(!n||!email||pass.length<8||!$('agree').checked){say('authMsg','Enter a display name and email, use an 8+ character password, and accept the community agreement.');return;}
+ try{
+  const {data,error}=await sb.auth.signUp({email,password:pass,options:{data:{display_name:n}}});
+  if(error)throw error;
+  if(data.session){await enterApp(data.user);await saveProfile();}
+  else say('authMsg','Check your email to confirm your account. Then return here and log in.');
+ }catch(e){say('authMsg',e.message);}
+}
+async function login(){
+ try{const {data,error}=await sb.auth.signInWithPassword({email:$('lemail').value.trim(),password:$('lpass').value});if(error)throw error;await enterApp(data.user);}
+ catch(e){say('authMsg',e.message);}
+}
+async function uploadImage(file,kind){
+ if(!file)return profile?.[kind+'_path']||null;
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('Please choose a JPG, PNG, or WebP image.');
+ if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
+ const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
+ const path=user.id+'/'+kind+'-'+Date.now()+'.'+ext;
+ const {error}=await sb.storage.from('member-photos').upload(path,file,{upsert:false,contentType:file.type});
+ if(error)throw error;
+ return path;
+}
+async function saveProfile(){
+ const name=$('editName').value.trim();
+ if(!name){say('profileMsg','Display name is required.');return;}
+ const btn=$('saveProfile');btn.disabled=true;say('profileMsg','Saving your space…');
+ try{
+  const avatarPath=await uploadImage($('avatarFile').files[0],'avatar');
+  const coverPath=await uploadImage($('coverFile').files[0],'cover');
+  const record={id:user.id,display_name:name,bio:$('editBio').value.trim(),about_me:$('aboutMe').value.trim(),mood:$('mood').value.trim(),interests:$('interests').value.trim(),favorite_quote:$('favoriteQuote').value.trim(),avatar_path:avatarPath,cover_path:coverPath};
+  const {data,error}=await sb.from('profiles').upsert(record).select().single();
+  if(error)throw error;
+  profile=data;setOwnPreview(profile);$('avatarFile').value='';$('coverFile').value='';say('profileMsg','Your My Space profile has been saved! ♡');
+ }catch(e){say('profileMsg','Save failed: '+e.message);}
+ finally{btn.disabled=false;}
+}
+async function loadMembers(){
+ show('visitorSpace',false);say('memberMsg','Loading members…');$('memberList').replaceChildren();
+ const {data,error}=await sb.from('profiles').select('id,display_name,bio,avatar_path,cover_path,mood,interests,about_me,favorite_quote,created_at').order('created_at',{ascending:false}).limit(100);
+ if(error){say('memberMsg','Could not load members: '+error.message);return;}
+ memberRows=data||[];renderMembers();
+}
+function renderMembers(){
+ const q=$('memberSearch').value.trim().toLowerCase();$('memberList').replaceChildren();
+ const rows=memberRows.filter(p=>(p.display_name||'').toLowerCase().includes(q)||(p.bio||'').toLowerCase().includes(q));
+ if(!rows.length){$('memberList').innerHTML='<div class="empty">No members found yet.</div>';return;}
+ rows.forEach(p=>{
+  const card=document.createElement('article');card.className='member';
+  const cover=document.createElement('img');cover.src=imageUrl(p.cover_path,FALLBACK_COVER);cover.alt='Cover image';
+  const inside=document.createElement('div');inside.className='inside';
+  const av=document.createElement('img');av.src=imageUrl(p.avatar_path,FALLBACK_AVATAR);av.alt='';av.className='avatar';av.style.width='58px';av.style.height='58px';
+  const title=document.createElement('h3');title.textContent=p.display_name||'Community member';title.style.margin='7px 0 2px';
+  const bio=document.createElement('p');bio.className='small';bio.textContent=p.bio||'A member of SapphicSpace';
+  const btn=document.createElement('button');btn.textContent='Visit My Space';btn.onclick=()=>openMember(p.id);
+  inside.append(av,title,bio,btn);card.append(cover,inside);$('memberList').append(card);
+ });
+ say('memberMsg',rows.length+' member(s) shown.');
+}
+function openMember(id){
+ const p=memberRows.find(x=>x.id===id);if(!p)return;
+ $('visitorCover').src=imageUrl(p.cover_path,FALLBACK_COVER);$('visitorAvatar').src=imageUrl(p.avatar_path,FALLBACK_AVATAR);
+ $('visitorName').textContent=p.display_name||'Community member';$('visitorMood').textContent=p.mood?'✦ '+p.mood:'';
+ $('visitorBio').textContent=p.bio||'';$('visitorAbout').textContent=p.about_me||'This member has not added an About Me yet.';
+ $('visitorInterests').replaceChildren();
+ if(p.interests)p.interests.split(',').map(x=>x.trim()).filter(Boolean).forEach(x=>{let s=document.createElement('span');s.className='pill';s.textContent=x;$('visitorInterests').append(s)});
+ $('visitorQuote').textContent=p.favorite_quote||'';show('visitorQuote',!!p.favorite_quote);
+ show('visitorSpace',true);window.scrollTo({top:$('visitorSpace').offsetTop-80,behavior:'smooth'});
+}
+async function loadFeed(){
+ $('feed').textContent='Loading posts…';
+ const {data,error}=await sb.from('posts').select('id,user_id,body,created_at').order('created_at',{ascending:false}).limit(60);
+ if(error){$('feed').textContent='Could not load posts: '+error.message;return;}
+ if(!data.length){$('feed').textContent='No posts yet. Be the first to share something kind.';return;}
+ const ids=[...new Set(data.map(x=>x.user_id))];
+ const r=await sb.from('profiles').select('id,display_name,avatar_path').in('id',ids);
+ const people=Object.fromEntries((r.data||[]).map(x=>[x.id,x]));
+ $('feed').replaceChildren();
+ data.forEach(p=>{
+  const el=document.createElement('article');el.className='post';
+  const person=people[p.user_id]||{};
+  const name=document.createElement('div');name.className='postname';name.textContent=person.display_name||'Community member';
+  const time=document.createElement('div');time.className='tiny';time.textContent=new Date(p.created_at).toLocaleString();
+  const body=document.createElement('p');body.textContent=p.body;
+  el.append(name,time,body);
+  if(p.user_id===user.id){const del=document.createElement('button');del.className='danger';del.textContent='Delete';del.onclick=async()=>{if(confirm('Delete this post?')){const x=await sb.from('posts').delete().eq('id',p.id);if(x.error)alert(x.error.message);else loadFeed();}};el.append(del);}
+  $('feed').append(el);
+ });
+}
+async function loadMyPosts(){
+ const {data,error}=await sb.from('posts').select('id,body,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(30);
+ $('myPosts').replaceChildren();
+ if(error){$('myPosts').textContent=error.message;return;}
+ if(!data.length){$('myPosts').textContent='Your updates will appear here.';return;}
+ data.forEach(p=>{const a=document.createElement('article');a.className='post';const t=document.createElement('div');t.className='tiny';t.textContent=new Date(p.created_at).toLocaleString();const b=document.createElement('p');b.textContent=p.body;a.append(t,b);$('myPosts').append(a);});
+}
+async function publish(){
+ const body=$('postText').value.trim();if(!body){say('postMsg','Write something first.');return;}
+ const {error}=await sb.from('posts').insert({user_id:user.id,body});
+ if(error)say('postMsg',error.message);else{$('postText').value='';say('postMsg','Posted! ♡');loadFeed();loadMyPosts();}
+}
+function bind(){
+ $('signupTab').onclick=()=>{show('signup',true);show('login',false);$('signupTab').classList.remove('secondary');$('loginTab').classList.add('secondary');};
+ $('loginTab').onclick=()=>{show('signup',false);show('login',true);$('loginTab').classList.remove('secondary');$('signupTab').classList.add('secondary');};
+ $('create').onclick=signup;$('enter').onclick=login;$('saveProfile').onclick=saveProfile;
+ $('myTab').onclick=()=>tab('my');$('membersTab').onclick=()=>tab('members');$('feedTab').onclick=()=>tab('feed');
+ $('memberSearch').oninput=renderMembers;$('backMembers').onclick=()=>show('visitorSpace',false);
+ $('publish').onclick=publish;$('refresh').onclick=loadFeed;
+ $('logout').onclick=async()=>{await sb.auth.signOut();user=null;profile=null;views();};
+}
+function start(){
+ if(!window.supabase){show('auth',true);say('authMsg','Supabase library did not load. Check your internet connection and reload.');return;}
+ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+ bind();views();
+ sb.auth.getSession().then(({data,error})=>{if(error){say('authMsg',error.message);return;}if(data.session)enterApp(data.session.user);});
+ sb.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){user=null;profile=null;views();}});
+}
+start();
+})();
+</script>
+</body>
+</html>
