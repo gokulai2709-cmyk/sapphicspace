@@ -1,685 +1,263 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#21152b">
-<title>VYSSARA HUB — Your Universe</title>
+<title>VYSSARA HUB — Lavender Lounge</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{color-scheme:dark;--bg:#130e1b;--panel:#21182b;--panel2:#2c2038;--line:#574064;--pink:#ff83c2;--coral:#f28d83;--orange:#f5a45f;--lav:#c4a5ff;--white:#fff3f8;--muted:#cbbbd4;--green:#9fe3c0}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#49244d,transparent 35%),radial-gradient(circle at 95% 15%,#30265b,transparent 30%),var(--bg);color:var(--white);font:15px/1.5 "Trebuchet MS",system-ui,sans-serif}
-a{color:var(--pink)}header{position:sticky;top:0;z-index:5;background:#17111feF;border-bottom:1px solid var(--line);padding:11px 15px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(12px)}
-.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#f28d83 0 20%,#f5a45f 20% 40%,#fff3f8 40% 55%,#ff83c2 55% 72%,#c4a5ff 72%);display:grid;place-items:center;color:#28152e;font-size:23px}.brand{font-weight:900;font-size:21px;letter-spacing:.4px}.brand-logo{
-  display:block;
-  width:64px;
-  height:64px;
-  object-fit:contain;
-  border-radius:50%;
-  flex-shrink:0;
-  background:#21182b;
+:root{
+  color-scheme:dark;
+  --bg:#100b18;--panel:#21172d;--panel2:#2b1e3a;--line:#563d68;
+  --pink:#ff83c2;--lav:#c4a5ff;--violet:#9b69e8;--white:#fff4ff;
+  --muted:#cbb9d7;--glow:0 0 22px #b65cff30;
 }
-.wrap{max-width:1400px;margin:20px auto;padding:0 13px}.rainbow{height:4px;background:linear-gradient(90deg,#e86d70,#f39a54,#fff0e9,#f28db2,#a78bfa,#38bdf8)}
-.card{background:linear-gradient(145deg,#2b2037,#1d1727);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 9px 30px #08050d55}
-h1,h2,h3,p{margin-top:0}h1{font-size:28px;line-height:1.15}h2{font-size:20px;margin-bottom:10px}h3{font-size:16px;margin-bottom:7px}
-.muted,.small{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px;color:var(--muted)}
-label{display:block;font-size:13px;color:#ead9f0;margin:8px 0 3px}
-input,textarea,select,button{font:inherit}input,textarea,select{width:100%;padding:11px 12px;margin:4px 0 10px;border:1px solid #654d73;border-radius:11px;background:#140f1b;color:white;outline:none}textarea{min-height:85px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 2px #ff83c233}
-button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(100deg,var(--pink),var(--lav));color:#24152d;font-weight:800;margin:3px;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#3a2b47;color:white;border:1px solid #6b5479}.danger{background:#6d304d;color:white}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.row .fit{flex:0 0 auto}.hidden{display:none!important}.notice{padding:11px;background:#392941;border-radius:11px;margin:10px 0}.msg{font-size:13px;color:#ffd0e8;white-space:pre-wrap;min-height:18px}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tabs button{flex:1;min-width:90px}.tabactive{outline:2px solid var(--white);outline-offset:2px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.member{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#1b1424}.member img{width:100%;height:115px;object-fit:cover;background:#382941}.member .inside{padding:12px}.avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;background:#493451;border:4px solid #ffb4dc;box-shadow:0 0 0 3px #3d2a4a}.cover{height:190px;width:100%;object-fit:cover;background:linear-gradient(120deg,#8e477e,#d88e9d,#7a67a7);border-radius:14px}.profilehead{display:flex;gap:14px;align-items:end;margin-top:-48px;padding:0 14px;position:relative}.profilehead .avatar{width:105px;height:105px}.profilemeta{padding-bottom:7px}.pixel{color:var(--pink);letter-spacing:2px}.quote{border-left:3px solid var(--pink);padding:8px 12px;background:#ffffff09;font-style:italic}.post{border-top:1px dashed #70567d;padding:13px 0}.post p{white-space:pre-wrap;margin:8px 0}.postname{color:#ffc2e2;font-weight:800}.pill{display:inline-block;background:#493454;border:1px solid #70577c;border-radius:99px;padding:3px 9px;margin:3px;font-size:12px}.empty{text-align:center;padding:20px;color:var(--muted)}footer{text-align:center;color:#bbaec4;font-size:12px;padding:25px}
-@media(min-width:760px){.layout{display:grid;grid-template-columns: minmax(0,1.5fr) minmax(250px,.8fr);gap:14px}.layout .card{margin-top:0}.cover{height:235px}}
-/* VYSSARA HUB — Y2K THREE-COLUMN DASHBOARD */
-.dashboard-grid{
- display:grid;
- grid-template-columns:210px minmax(0,1fr) 220px;
- gap:14px;
- align-items:start;
-}
-.dashboard-main{min-width:0}
-.dashboard-side{
- background:linear-gradient(145deg,#2b1b3b,#191124);
- border:1px solid #694477;
- border-radius:13px;
- padding:14px;
- margin:12px 0;
- box-shadow:0 8px 25px #05020b88;
-}
-.dashboard-side h3{
- color:#ffd0ef;
- border-bottom:1px dashed #805b91;
- padding-bottom:8px;
-}
-.side-link{
- display:block;
- padding:8px;
- margin:5px 0;
- background:#382647;
- border:1px solid #694477;
- border-radius:8px;
- color:#ffe1f4;
- text-decoration:none;
-}
-.side-link:hover{background:#56345f}
-.side-star{color:#ff83c2}
-@media(max-width:900px){
- .dashboard-grid{grid-template-columns:160px minmax(0,1fr);gap:8px}
- .dashboard-right{display:block;grid-column:1/-1}
-}
-@media(max-width:600px){
- .dashboard-grid{display:block}
- .dashboard-left{display:none}
- .dashboard-right{display:block}
-}
-
-.femme-settings {
-  width: 43px;
-  height: 43px;
-  padding: 0;
-  margin: 3px;
-  flex: 0 0 43px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#e94b5b,#f59b45,#f5dc58,#43b879,#438ee8,#a66be0);
-  color: white;
-  font-size: 27px;
-  font-weight: 900;
-  border: 2px solid white;
-  box-shadow: 0 0 12px #d78cff;
-  cursor: pointer;
-}
-.femme-settings:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ff83c2;
-}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 8% 0%,#57245d80,transparent 35%),radial-gradient(ellipse at 95% 18%,#422d7180,transparent 32%),var(--bg);color:var(--white);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--pink)}
+button,input,textarea{font:inherit}
+button{border:1px solid transparent;border-radius:12px;padding:10px 15px;background:linear-gradient(105deg,var(--pink),var(--lav));color:#21152b;font-weight:800;cursor:pointer;transition:.18s ease}
+button:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 0 16px #ff83c255}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.secondary{background:#382847;color:var(--white);border-color:#654c78}
+.danger{background:#702d50;color:white}
+input,textarea{width:100%;padding:12px 13px;margin:6px 0 13px;border:1px solid #624b72;border-radius:12px;background:#130d1d;color:var(--white)}
+textarea{min-height:100px;resize:vertical}
+label{display:block;font-size:13px;color:#eadcf2;font-weight:650}
+.hidden{display:none!important}
+.muted,.small{color:var(--muted)}.small{font-size:12px}
+.rainbow{height:4px;background:linear-gradient(90deg,#e86d70,#f39a54,#fff0e9,#f28db2,#a78bfa,#38bdf8)}
+.site-header{position:sticky;top:0;z-index:10;background:#171020ed;border-bottom:1px solid var(--line);backdrop-filter:blur(14px);padding:10px max(16px,calc((100vw - 1240px)/2));display:flex;align-items:center;gap:13px}
+.brand-logo{width:52px;height:52px;object-fit:cover;border-radius:50%;border:2px solid #d98cff;box-shadow:0 0 15px #c05cff66;background:#2b1e3a;flex-shrink:0}
+.brand-block{min-width:0}.brand{font-weight:950;font-size:21px;letter-spacing:.7px;color:#ffd0f0;text-shadow:0 0 13px #e76bff70;line-height:1.1}
+.tagline{font-size:11px;color:var(--muted);letter-spacing:.5px}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav-pill{font-size:12px;color:#f5e8ff;border:1px solid #654a78;border-radius:99px;padding:6px 10px;background:#2b1d38}
+.wrap{max-width:1240px;margin:24px auto;padding:0 16px}
+.card{background:linear-gradient(145deg,#2a1e37f5,#1b1426f5);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:var(--glow);margin:0 0 16px}
+h1,h2,h3,p{margin-top:0}h1{font-size:29px;line-height:1.15;margin-bottom:10px}h2{font-size:18px;margin-bottom:12px}h3{font-size:14px;margin-bottom:8px}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#e8a8ff;font-weight:850}
+.hero{position:relative;overflow:hidden;padding:25px;background:linear-gradient(115deg,#512a66,#382456 55%,#251a3b);border-color:#9461ae}
+.hero:after{content:"✧";position:absolute;right:25px;top:5px;font-size:100px;color:#f6c5ff20;pointer-events:none}
+.hero h1{font-size:clamp(25px,4vw,38px);color:#ffe0fa;text-shadow:0 0 18px #f08dff66}
+.hero p{max-width:650px;color:#f1dff7;margin-bottom:0}
+.dashboard{display:grid;grid-template-columns:245px minmax(0,1fr) 255px;gap:16px;align-items:start}
+.sidebar-card{padding:15px}
+.avatar-placeholder{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;background:linear-gradient(135deg,#ff83c2,#9b69e8);color:#24142f;font-size:29px;font-weight:900;border:3px solid #f4c7ff;box-shadow:0 0 20px #d76cff66}
+.profile-welcome{text-align:center}
+.stat-row{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #503b60;padding:9px 0;font-size:12px;color:var(--muted)}
+.tag-list{display:flex;flex-wrap:wrap;gap:7px}
+.tag{border:1px solid #674b7d;background:#352344;color:#f1d9ff;border-radius:99px;padding:5px 9px;font-size:11px}
+.feature-tile{padding:10px;border:1px solid #513b61;border-radius:12px;background:#2b2038;margin:8px 0}
+.feature-tile strong{display:block;color:#ffd0ef;font-size:13px}
+.composer textarea{min-height:105px}
+.composer-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.post{border-top:1px solid var(--line);padding:15px 0}
+.post:first-child{border-top:0}
+.post p{white-space:pre-wrap;margin:8px 0}
+.post-meta{font-size:11px;color:var(--muted);margin-top:3px}
+.notice{padding:12px;background:#392744;border:1px solid #674a79;border-radius:12px;margin:12px 0}
+.msg{font-size:13px;color:#ffc9e9;white-space:pre-wrap;min-height:18px}
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tabs button{flex:1}
+footer{text-align:center;color:#bbaec4;font-size:12px;padding:25px 16px}
+footer .rainbow{margin-bottom:15px}
+@media(max-width:950px){.dashboard{grid-template-columns:220px minmax(0,1fr)}.right-sidebar{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.right-sidebar .card{margin:0}}
+@media(max-width:650px){.site-header{padding:9px 12px}.brand{font-size:17px}.brand-logo{width:44px;height:44px}.header-right .nav-pill{display:none}.wrap{margin:15px auto;padding:0 11px}.dashboard{display:flex;flex-direction:column}.left-sidebar,.center-column,.right-sidebar{width:100%}.right-sidebar{display:flex;flex-direction:column}.hero{padding:20px}.card{padding:15px}h1{font-size:25px}}
 </style>
 </head>
 <body>
-
-<header>
+<div class="rainbow"></div>
+<header class="site-header">
   <img class="brand-logo" src="file_0000000080fc820791e623deb35ce1df.png" alt="VYSSARA HUB Logo">
   <div class="brand-block">
     <div class="brand">VYSSARA HUB</div>
     <div class="tagline">your corner of the internet ♡</div>
   </div>
+  <div class="header-right">
+    <span class="nav-pill">✧ Connect</span><span class="nav-pill">♡ Share</span><span class="nav-pill">☾ Belong</span>
+  </div>
 </header>
 
 <main class="wrap">
+<section id="setup" class="card">
+  <div class="kicker">Welcome to your community</div>
+  <h1><span style="color:var(--pink)">VYSSARA</span> <span style="color:var(--lav)">HUB</span> ✦</h1>
+  <p class="muted">A little corner of the internet to connect, express yourself, and belong.</p>
+  <div class="notice small">Connect your Supabase project. Use only your Project URL and Publishable key. Never enter a secret or service-role key.</div>
+  <label>Project URL</label><input id="url" placeholder="https://your-project.supabase.co">
+  <label>Publishable key</label><input id="key" placeholder="sb_publishable_...">
+  <button id="connect">Connect</button><button class="secondary" id="clear">Clear saved details</button>
+  <div id="setupMsg" class="msg"></div>
+</section>
+
 <section id="auth" class="card hidden">
-<h1><span style="color:var(--pink)">Welcome</span> to VYSSARA HUB ✦</h1>
-<p class="muted">A little retro corner for lesbians to meet, express themselves, and make their own space.</p>
-<div class="tabs"><button id="signupTab">Create account</button><button id="loginTab" class="secondary">Log in</button></div>
-<div id="signup">
-<label>Display name</label><input id="name" maxlength="40" placeholder="Your name in the space">
-<label>Email</label><input id="email" type="email" placeholder="you@example.com">
-<label>Password (8+ characters)</label><input id="password" type="password" minlength="8">
-<label>Short intro (optional)</label><textarea id="bio" maxlength="300" placeholder="A little about you..."></textarea>
-<label><input id="agree" type="checkbox" style="width:auto"> I am an adult, identify as a lesbian, and agree to treat members respectfully.</label>
-<button id="create">Create my space</button>
-</div>
-<div id="login" class="hidden"><label>Email</label><input id="lemail" type="email"><label>Password</label><input id="lpass" type="password"><button id="enter">Log in</button></div>
-<div id="authMsg" class="msg"></div>
-<p class="tiny">Membership is self-attested, not identity-verified. Never share passwords, financial details, or private information. This is an early community beta and needs active moderation.</p>
-</section>
-
-
-<section id="app" class="hidden">
-<div class="dashboard-grid">
-
-<!-- LEFT SIDEBAR -->
-<aside class="dashboard-side dashboard-left">
-<h3>✧ MY VYSSARA ✧</h3>
-<p class="small">Welcome to your little universe!</p>
-
-<div class="quote">
-Your identity. Your universe. ♡
-</div>
-
-<h3 style="margin-top:20px">♡ QUICK LINKS</h3>
-<a class="side-link" href="#" onclick="document.getElementById('myTab').click();return false;">✿ Femme</a>
-<a class="side-link" href="#" onclick="document.getElementById('membersTab').click();return false;">♡ Gaydar</a>
-<a class="side-link" href="#" onclick="document.getElementById('feedTab').click();return false;">✧ Lavender Lounge</a>
-
-<h3 style="margin-top:20px">✦ SPACE VIBES</h3>
-<p class="small">Be yourself. Find your people. Make memories.</p>
-<div class="pill">#SapphicSpace</div>
-<div class="pill">#BeYourself</div>
-<div class="pill">#GoodVibes</div>
-
-<div style="text-align:center;margin-top:20px;color:var(--pink)">
-✧･ﾟ: *✧･ﾟ:*
-</div>
-</aside>
-
-<!-- CENTER CONTENT -->
-<div class="dashboard-main">
-
-<div class="card">
-<div class="row">
-<div>
-<div class="pixel">✧ WELCOME BACK ✧</div>
-<h1>Welcome to Your VYSSARA Haven ✧</h1>
-<div id="hello" class="small"></div>
-</div>
-<div class="row" style="flex:0 0 auto;gap:6px">
-  <button id="settingsBtn" class="femme-settings" title="My Universe">♀</button>
-  <button id="logout" class="secondary fit">Leave the Haven</button>
-</div>
-</div>
-
-<div class="tabs">
-<button id="myTab">Femme</button>
-<button id="membersTab" class="secondary">Gaydar</button>
-<button id="feedTab" class="secondary">Lavender Lounge</button>
-</div>
-
-<section id="mySpace">
-<div class="layout">
-<div>
-<div class="card">
-<img id="coverPreview" class="cover" alt="Your cover image">
-<div class="profilehead">
-<img id="avatarPreview" class="avatar" alt="Your profile photo">
-<div class="profilemeta">
-<h2 id="profileTitle" style="margin:0">My Space</h2>
-<div id="moodPreview" class="small"></div>
-</div>
-</div>
-<div style="padding:12px 4px 0">
-<p id="bioPreview" class="muted"></p>
-<div id="quotePreview" class="quote hidden"></div>
-<div id="interestPreview"></div>
-</div>
-</div>
-
-<div class="card">
-<h2>✧ My updates</h2>
-<div id="myPosts"></div>
-</div>
-</div>
-
-<div>
-<div class="card">
-<h2>♡ Customize My Space</h2>
-<label>Display name</label>
-<input id="editName" maxlength="40">
-<label>Short bio</label>
-<textarea id="editBio" maxlength="300"></textarea>
-<label>About me</label>
-<textarea id="aboutMe" maxlength="600" placeholder="Tell the community a little more about yourself..."></textarea>
-<label>Current mood</label>
-<input id="mood" maxlength="60" placeholder="e.g. soft girl era ✨">
-<label>Interests (separate with commas)</label>
-<input id="interests" maxlength="250" placeholder="music, movies, art, coffee">
-<label>Favorite quote</label>
-<textarea id="favoriteQuote" maxlength="180" placeholder="A quote that feels like you..."></textarea>
-<label>Profile picture</label>
-<input id="avatarFile" type="file" accept="image/jpeg,image/png,image/webp">
-<label>Cover image</label>
-<input id="coverFile" type="file" accept="image/jpeg,image/png,image/webp">
-<button id="saveProfile">Save my space</button>
-<div id="profileMsg" class="msg"></div>
-<p class="tiny">Use JPG, PNG, or WebP images up to 5 MB. Your profile images are publicly viewable because this is a public community profile.</p>
-</div>
-
-<div class="card">
-<h2>✦ Quick note</h2>
-<p class="small">Your My Space page is your own little profile. Keep personal contact details private. You can change your photos and intro whenever you like.</p>
-</div>
-</div>
-</div>
-</section>
-
-<section id="members" class="hidden">
-<div class="card">
-<div class="row">
-<div>
-<h2>♡ Member directory</h2>
-<p class="small">Find people and visit their spaces.</p>
-</div>
-<input id="memberSearch" class="fit" style="max-width:240px" placeholder="Search members">
-</div>
-<div id="memberList" class="grid"></div>
-<div id="memberMsg" class="msg"></div>
-</div>
-
-<div id="visitorSpace" class="hidden">
-<div class="card">
-<button id="backMembers" class="secondary">← Back to members</button>
-<img id="visitorCover" class="cover" alt="Member cover">
-<div class="profilehead">
-<img id="visitorAvatar" class="avatar" alt="Member profile photo">
-<div class="profilemeta">
-<h2 id="visitorName" style="margin:0"></h2>
-<div id="visitorMood" class="small"></div>
-</div>
-</div>
-<div style="padding:12px 4px">
-<p id="visitorBio" class="muted"></p>
-<h3>About me</h3>
-<p id="visitorAbout"></p>
-<div id="visitorInterests"></div>
-<div id="visitorQuote" class="quote hidden"></div>
-</div>
-</div>
-</div>
-</section>
-
-
-<section id="community" class="hidden">
-<style>
-.lavender-lounge {
-  color: #f8eaff;
-  background: linear-gradient(145deg,#21132f,#301a43,#1b1228);
-  border: 1px solid #8055a0;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 0 22px #a34dca30;
-}
-.lounge-heading {
-  padding: 20px;
-  margin-bottom: 16px;
-  border: 1px solid #a66bca;
-  border-radius: 14px;
-  background: linear-gradient(120deg,#49245f,#733b85,#432052);
-  box-shadow: 0 0 18px #c46bff35;
-}
-.lounge-heading h1 {
-  color: #ffd4f2;
-  margin: 0 0 8px;
-  text-shadow: 0 0 12px #e68bff;
-}
-.lounge-heading p {
-  color: #f1dafa;
-  margin: 0;
-}
-.lounge-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0;
-}
-.lounge-tag {
-  background: #402650;
-  color: #ffd9f5;
-  border: 1px solid #a66bc1;
-  border-radius: 20px;
-  padding: 7px 12px;
-  font-size: 12px;
-}
-.lounge-grid {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) 230px;
-  gap: 14px;
-}
-.lounge-panel {
-  background: linear-gradient(145deg,#30203f,#24172f);
-  border: 1px solid #704986;
-  border-radius: 13px;
-  padding: 15px;
-  margin-bottom: 14px;
-  box-shadow: 0 5px 18px #10081970;
-}
-.lounge-panel h2,
-.lounge-panel h3 {
-  color: #f4bde8;
-  margin-top: 0;
-}
-.lounge-panel textarea {
-  width: 100%;
-  min-height: 100px;
-  box-sizing: border-box;
-  background: #1c1228;
-  color: white;
-  border: 1px solid #9b6ab4;
-  border-radius: 10px;
-  padding: 12px;
-}
-.lounge-panel button {
-  background: linear-gradient(100deg,#a64dd0,#df70bd);
-  color: white;
-  border: 1px solid #e6a4ef;
-  border-radius: 9px;
-  padding: 10px 17px;
-  margin-top: 9px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.lounge-panel button.secondary {
-  background: #49305c;
-  border-color: #986bb0;
-}
-.lounge-note {
-  color: #d9c5e9;
-  font-size: 13px;
-  line-height: 1.6;
-}
-#feed {
-  color: #f5eaff;
-}
-@media(max-width:700px) {
-  .lounge-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-
-<div class="lavender-lounge">
-
-  <div class="lounge-heading">
-    <div style="font-size:13px;color:#f8c9ed;letter-spacing:3px">
-      ♡ VYSSARA COMMUNITY ♡
-    </div>
-    <h1>✧ The Lavender Lounge ✧</h1>
-    <p>A little corner for conversations, advice, stories, and sisterhood.</p>
+  <div class="kicker">VYSSARA HUB membership</div>
+  <h1><span style="color:var(--pink)">Welcome</span> to the lounge ✧</h1>
+  <p class="muted">A warm, respectful space to meet others and be yourself.</p>
+  <div class="tabs"><button id="signupTab">Create account</button><button class="secondary" id="loginTab">Log in</button></div>
+  <div id="signup">
+    <label>Display name</label><input id="name" maxlength="40" placeholder="Your name in the space">
+    <label>Email</label><input id="email" type="email" placeholder="you@example.com">
+    <label>Password (8+ characters)</label><input id="password" type="password" minlength="8">
+    <label>Short intro (optional)</label><textarea id="bio" maxlength="300" placeholder="A little about you..."></textarea>
+    <label class="small"><input id="agree" type="checkbox" style="width:auto"> I am an adult, identify as a lesbian, and agree to treat members respectfully.</label>
+    <button id="create">Create my space</button>
   </div>
-
-  <div class="lounge-tags">
-    <span class="lounge-tag">♡ Girliepop</span>
-    <span class="lounge-tag">✧ Kilig</span>
-    <span class="lounge-tag">☕ TeaTime</span>
-    <span class="lounge-tag">♡ Besties</span>
-    <span class="lounge-tag">✿ Sapphicore</span>
-    <span class="lounge-tag">✨ Glowup</span>
-    <span class="lounge-tag">🌈 Queertopia</span>
+  <div id="login" class="hidden">
+    <label>Email</label><input id="lemail" type="email" placeholder="you@example.com">
+    <label>Password</label><input id="lpass" type="password">
+    <button id="enter">Log in</button>
   </div>
+  <div id="authMsg" class="msg"></div>
+  <p class="small">Membership is self-attested, not identity-verified. Do not share private or sensitive information. This early beta needs active moderation.</p>
+</section>
 
-  <div class="lounge-grid">
-
-    <div>
-      <div class="lounge-panel">
-        <h2>♡ What's on your mind, darling?</h2>
-        <p class="lounge-note">
-          Share your thoughts, little moments, stories, or anything
-          you'd love the VYSSARA community to hear.
-        </p>
-        <textarea id="postText" maxlength="2000"
-          placeholder="Spill your thoughts here, lovely..."></textarea>
-        <button id="publish">♡ Share with the Lounge</button>
-        <div id="postMsg" class="msg"></div>
+<section id="home" class="hidden">
+  <div class="card hero">
+    <div class="kicker">✧ Your community space ✧</div>
+    <h1>LAVENDER LOUNGE</h1>
+    <p>Connect ♡ Share ♡ Belong. Pull up a seat, say hello, and make this little corner feel like yours.</p>
+  </div>
+  <div class="dashboard">
+    <aside class="left-sidebar">
+      <div class="card sidebar-card profile-welcome">
+        <div class="avatar-placeholder">♡</div>
+        <div class="kicker">Your corner</div>
+        <h2 id="hello">Welcome!</h2>
+        <p class="small">Your profile and your voice belong here.</p>
+        <button class="secondary" id="logout">Log out</button>
       </div>
-
-      <div class="lounge-panel">
-        <h2>✧ The Lounge Feed</h2>
-        <button id="refresh" class="secondary">↻ Refresh feed</button>
-        <div id="feed" class="muted">Loading posts…</div>
-      </div>
-    </div>
-
-    <aside>
-      <div class="lounge-panel">
-        <h3>♡ Lounge Vibes</h3>
-        <p class="lounge-note">
-          A safe space to be yourself, meet new people,
-          share experiences, and find your community.
-        </p>
-      </div>
-
-      <div class="lounge-panel">
-        <h3>✧ Haven Etiquette ✧</h3>
-        <p class="lounge-note">
-          ♡ Be kind and respectful.<br>
-          ♡ Respect everyone's boundaries.<br>
-          ♡ Protect personal information.<br>
-          ♡ Ask permission before sharing another person's photos.<br>
-          ♡ Report harmful behavior to moderators.
-        </p>
-      </div>
-
-      <div class="lounge-panel">
-        <h3>💜 A Little Reminder</h3>
-        <p class="lounge-note">
-          You belong here. Your voice matters.
-          Be proud of who you are.
-        </p>
+      <div class="card sidebar-card">
+        <h2>✧ Your profile</h2>
+        <label>Display name</label><input id="editName">
+        <label>Bio</label><textarea id="editBio" maxlength="300"></textarea>
+        <button id="save">Save profile</button>
+        <div id="profileMsg" class="msg"></div>
       </div>
     </aside>
 
+    <section class="center-column">
+      <div class="card composer">
+        <div class="kicker">Share a little something</div>
+        <h2>What's on your mind? ♡</h2>
+        <textarea id="postText" maxlength="2000" placeholder="Drop a thought, a little joy, or a hello to the lounge..."></textarea>
+        <div class="composer-actions"><span class="small">Keep it kind. Keep it you.</span><button id="publish">Publish post ✦</button></div>
+        <div id="postMsg" class="msg"></div>
+      </div>
+      <div class="card">
+        <div class="composer-actions"><div><div class="kicker">From the community</div><h2 style="margin:4px 0 0">Lounge feed</h2></div><button class="secondary" id="refresh">Refresh</button></div>
+        <div id="feed" class="muted" style="padding-top:12px">No posts loaded.</div>
+      </div>
+    </section>
+
+    <aside class="right-sidebar">
+      <div class="card sidebar-card">
+        <div class="kicker">A little inspiration</div><h2>✧ Lounge notes</h2>
+        <div class="feature-tile"><strong>Be yourself</strong><span class="small">There is room for every way of being you.</span></div>
+        <div class="feature-tile"><strong>Make connections</strong><span class="small">Start with a kind hello or a thoughtful post.</span></div>
+        <div class="feature-tile"><strong>Keep it safe</strong><span class="small">Respect boundaries and protect personal information.</span></div>
+      </div>
+      <div class="card sidebar-card">
+        <div class="kicker">Find your vibe</div><h2>Trending themes</h2>
+        <div class="tag-list"><span class="tag">#LavenderLounge</span><span class="tag">#NewFriends</span><span class="tag">#SelfExpression</span><span class="tag">#Kindness</span><span class="tag">#SapphicSpace</span></div>
+        <p class="small" style="margin:13px 0 0">Community features will grow as the lounge grows.</p>
+      </div>
+    </aside>
   </div>
-</div>
 </section>
-
-
-</div>
-
-<!-- RIGHT SIDEBAR -->
-<aside class="dashboard-side dashboard-right">
-<h3>✧ THE VYSSARA GAZETTE ✧</h3>
-<p class="small">A little space for everyone to shine.</p>
-
-<div class="card" style="padding:11px;margin:10px 0">
-<div class="pixel">✧ REMEMBER ✧</div>
-<p class="small" style="margin:7px 0 0">You belong here. Be kind to yourself and others.</p>
-</div>
-
-<h3>✦ HOT ON VYSSARA ✦</h3>
-<div class="pill">#Pride</div>
-<div class="pill">#Music</div>
-<div class="pill">#Friendship</div>
-<div class="pill">#SelfLove</div>
-
-<h3 style="margin-top:20px">♡ COMMUNITY RULES</h3>
-<p class="small">✿ Respect everyone</p>
-<p class="small">✿ Protect personal privacy</p>
-<p class="small">✿ Ask before sharing photos</p>
-<p class="small">✿ Keep this space welcoming</p>
-
-<div style="text-align:center;margin-top:22px;color:var(--pink)">
-✧ ♡ ✧
-</div>
-</aside>
-
-</div>
-</section>
-
 </main>
-  <section id="settings" class="hidden">
-  <div class="card">
-    <div class="pixel">✧ THE HAVEN ✧</div>
-
-    <h1>♀ My Universe</h1>
-
-    <p class="muted">
-      Your world, your identity, your rules. Be free to be you.
-    </p>
-
-    <div class="card">
-      <h2>♡ Femme Corner</h2>
-      <p class="small">
-        Your profile, your personality, and your beautiful Sapphic identity.
-      </p>
-      <button id="settingsProfile" class="secondary">
-        Edit My Femme Profile
-      </button>
-    </div>
-
-    <div class="card">
-      <h2>🌈 Safe Haven</h2>
-      <p class="small">
-        Your privacy, your safety, and your comfort matter.
-        Keep your password private and share personal information wisely.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>✧ Rainbow Lounge</h2>
-      <p class="small">
-        A welcoming space to express yourself, meet your darlings,
-        share stories, celebrate love, and belong.
-      </p>
-    </div>
-  </div>
-</section>
-<footer><div class="rainbow" style="margin-bottom:14px"></div>VYSSARA HUB · Your identity. Your universe. · made with ♡</footer>
+<footer><div class="rainbow"></div>VYSSARA HUB · LAVENDER LOUNGE · Your corner of the internet ♡</footer>
 
 <script>
-(()=> {
-'use strict';
-const SUPABASE_URL='https://irqitazxawwumsxstjtw.supabase.co';
-const SUPABASE_KEY='sb_publishable_bV9TAewJnRDjFmUVy616aA_TQVKM_VN';
+(()=>{
 const $=id=>document.getElementById(id);
-const say=(id,msg)=>$(id).textContent=msg;
-const show=(id,on)=>$(id).classList.toggle('hidden',!on);
-const FALLBACK_AVATAR='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><rect width="100%" height="100%" fill="#493451"/><text x="50%" y="55%" font-size="90" text-anchor="middle" fill="#ffb4dc">✿</text></svg>');
-const FALLBACK_COVER='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320"><defs><linearGradient id="g"><stop stop-color="#8e477e"/><stop offset=".5" stop-color="#d88e9d"/><stop offset="1" stop-color="#7a67a7"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-size="42" text-anchor="middle" fill="#fff3f8">✧ your space ✧</text></svg>');
-let sb=null,user=null,profile=null,memberRows=[];
-function views(){show('auth',!user);show('app',!!user)}
-function tab(which){
- for(const [id,on] of [['mySpace',which==='my'],['members',which==='members'],['community',which==='feed']])show(id,on);
- $('myTab').classList.toggle('secondary',which!=='my');$('membersTab').classList.toggle('secondary',which!=='members');$('feedTab').classList.toggle('secondary',which!=='feed');
- show('visitorSpace',false);
- if(which==='members')loadMembers();
- if(which==='feed')loadFeed();
- if(which==='my')loadMyPosts();
+let sb=null,user=null,prof=null;
+const say=(id,t)=>$(id).textContent=t;
+const show=(id,v)=>$(id).classList.toggle('hidden',!v);
+const U='ss_url',K='ss_key';
+$('url').value=localStorage.getItem(U)||'';
+$('key').value=localStorage.getItem(K)||'';
+
+function views(){show('setup',!sb);show('auth',!!sb&&!user);show('home',!!sb&&!!user)}
+async function connect(){
+  let u=$('url').value.trim().replace(/\/+$/,''),k=$('key').value.trim();
+  if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(u)){say('setupMsg','Enter your complete Project URL.');return}
+  if(!k.startsWith('sb_publishable_')){say('setupMsg','Use the Publishable key beginning sb_publishable_.');return}
+  if(!window.supabase){say('setupMsg','Supabase library did not load. Check internet and reload.');return}
+  try{
+    sb=window.supabase.createClient(u,k);
+    let {error}=await sb.auth.getSession();if(error)throw error;
+    localStorage.setItem(U,u);localStorage.setItem(K,k);say('setupMsg','Connected.');views();
+    let {data}=await sb.auth.getSession();if(data.session)await signed(data.session.user)
+  }catch(e){sb=null;say('setupMsg','Connection error: '+e.message)}
 }
-function publicUrl(path){if(!path)return '';return sb.storage.from('member-photos').getPublicUrl(path).data.publicUrl}
-function imageUrl(path,fallback){return path?publicUrl(path):fallback}
-function setOwnPreview(p){
- $('profileTitle').textContent=p.display_name||'My Space';
- $('avatarPreview').src=imageUrl(p.avatar_path,FALLBACK_AVATAR);
- $('coverPreview').src=imageUrl(p.cover_path,FALLBACK_COVER);
- $('bioPreview').textContent=p.bio||'Add a short bio to introduce yourself.';
- $('moodPreview').textContent=p.mood?'✦ '+p.mood:'';
- $('quotePreview').textContent=p.favorite_quote||'';show('quotePreview',!!p.favorite_quote);
- $('interestPreview').replaceChildren();
- if(p.interests)(p.interests.split(',').map(x=>x.trim()).filter(Boolean)).forEach(x=>{let s=document.createElement('span');s.className='pill';s.textContent=x;$('interestPreview').append(s)});
-}
-async function loadProfile(){
- const {data,error}=await sb.from('profiles').select('*').eq('id',user.id).maybeSingle();
- if(error)throw error;
- profile=data||{id:user.id,display_name:user.user_metadata?.display_name||user.email?.split('@')[0]||'Member',bio:''};
- $('hello').textContent='Signed in as '+(profile.display_name||user.email);
- $('editName').value=profile.display_name||'';
- $('editBio').value=profile.bio||'';
- $('aboutMe').value=profile.about_me||'';
- $('mood').value=profile.mood||'';
- $('interests').value=profile.interests||'';
- $('favoriteQuote').value=profile.favorite_quote||'';
- setOwnPreview(profile);
-}
-async function enterApp(u){
- user=u;views();
- try{await loadProfile();tab('my');}
- catch(e){say('profileMsg','Could not load your profile: '+e.message);}
+async function signed(u){
+  user=u;
+  let {data,error}=await sb.from('profiles').select('*').eq('id',u.id).maybeSingle();
+  if(error)say('authMsg','Profile read error: '+error.message);
+  prof=data||null;
+  $('hello').textContent='Hello, '+(prof?.display_name||u.email)+' ♡';
+  $('editName').value=prof?.display_name||'';
+  $('editBio').value=prof?.bio||'';
+  views();feed()
 }
 async function signup(){
- const n=$('name').value.trim(),email=$('email').value.trim(),pass=$('password').value;
- if(!n||!email||pass.length<8||!$('agree').checked){say('authMsg','Enter a display name and email, use an 8+ character password, and accept the community agreement.');return;}
- try{
-  const {data,error}=await sb.auth.signUp({email,password:pass,options:{data:{display_name:n}}});
-  if(error)throw error;
-  if(data.session){await enterApp(data.user);await saveProfile();}
-  else say('authMsg','Check your email to confirm your account. Then return here and log in.');
- }catch(e){say('authMsg',e.message);}
+  let n=$('name').value.trim(),e=$('email').value.trim(),p=$('password').value;
+  if(!n||!e||p.length<8||!$('agree').checked){say('authMsg','Enter a name and email, use an 8+ character password, and check the community agreement.');return}
+  try{
+    let {data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{display_name:n}}});
+    if(error)throw error;
+    if(data.session){
+      let {error:pe}=await sb.from('profiles').upsert({id:data.user.id,display_name:n,bio:$('bio').value.trim()});
+      if(pe)throw pe;await signed(data.user)
+    }else say('authMsg','Check your email to confirm your account, then log in. If confirmation is enabled, create your profile after sign-in.')
+  }catch(e){say('authMsg',e.message)}
 }
 async function login(){
- try{const {data,error}=await sb.auth.signInWithPassword({email:$('lemail').value.trim(),password:$('lpass').value});if(error)throw error;await enterApp(data.user);}
- catch(e){say('authMsg',e.message);}
+  try{let {data,error}=await sb.auth.signInWithPassword({email:$('lemail').value.trim(),password:$('lpass').value});if(error)throw error;await signed(data.user)}
+  catch(e){say('authMsg',e.message)}
 }
-async function uploadImage(file,kind){
- if(!file)return profile?.[kind+'_path']||null;
- if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('Please choose a JPG, PNG, or WebP image.');
- if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
- const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
- const path=user.id+'/'+kind+'-'+Date.now()+'.'+ext;
- const {error}=await sb.storage.from('member-photos').upload(path,file,{upsert:false,contentType:file.type});
- if(error)throw error;
- return path;
-}
-async function saveProfile(){
- const name=$('editName').value.trim();
- if(!name){say('profileMsg','Display name is required.');return;}
- const btn=$('saveProfile');btn.disabled=true;say('profileMsg','Saving your space…');
- try{
-  const avatarPath=await uploadImage($('avatarFile').files[0],'avatar');
-  const coverPath=await uploadImage($('coverFile').files[0],'cover');
-  const record={id:user.id,display_name:name,bio:$('editBio').value.trim(),about_me:$('aboutMe').value.trim(),mood:$('mood').value.trim(),interests:$('interests').value.trim(),favorite_quote:$('favoriteQuote').value.trim(),avatar_path:avatarPath,cover_path:coverPath};
-  const {data,error}=await sb.from('profiles').upsert(record).select().single();
-  if(error)throw error;
-  profile=data;setOwnPreview(profile);$('avatarFile').value='';$('coverFile').value='';say('profileMsg','Your My Space profile has been saved! ♡');
- }catch(e){say('profileMsg','Save failed: '+e.message);}
- finally{btn.disabled=false;}
-}
-async function loadMembers(){
- show('visitorSpace',false);say('memberMsg','Loading members…');$('memberList').replaceChildren();
- const {data,error}=await sb.from('profiles').select('id,display_name,bio,avatar_path,cover_path,mood,interests,about_me,favorite_quote,created_at').order('created_at',{ascending:false}).limit(100);
- if(error){say('memberMsg','Could not load members: '+error.message);return;}
- memberRows=data||[];renderMembers();
-}
-function renderMembers(){
- const q=$('memberSearch').value.trim().toLowerCase();$('memberList').replaceChildren();
- const rows=memberRows.filter(p=>(p.display_name||'').toLowerCase().includes(q)||(p.bio||'').toLowerCase().includes(q));
- if(!rows.length){$('memberList').innerHTML='<div class="empty">No members found yet.</div>';return;}
- rows.forEach(p=>{
-  const card=document.createElement('article');card.className='member';
-  const cover=document.createElement('img');cover.src=imageUrl(p.cover_path,FALLBACK_COVER);cover.alt='Cover image';
-  const inside=document.createElement('div');inside.className='inside';
-  const av=document.createElement('img');av.src=imageUrl(p.avatar_path,FALLBACK_AVATAR);av.alt='';av.className='avatar';av.style.width='58px';av.style.height='58px';
-  const title=document.createElement('h3');title.textContent=p.display_name||'Community member';title.style.margin='7px 0 2px';
-  const bio=document.createElement('p');bio.className='small';bio.textContent=p.bio||'A member of SapphicSpace';
-  const btn=document.createElement('button');btn.textContent='Visit My Space';btn.onclick=()=>openMember(p.id);
-  inside.append(av,title,bio,btn);card.append(cover,inside);$('memberList').append(card);
- });
- say('memberMsg',rows.length+' member(s) shown.');
-}
-function openMember(id){
- const p=memberRows.find(x=>x.id===id);if(!p)return;
- $('visitorCover').src=imageUrl(p.cover_path,FALLBACK_COVER);$('visitorAvatar').src=imageUrl(p.avatar_path,FALLBACK_AVATAR);
- $('visitorName').textContent=p.display_name||'Community member';$('visitorMood').textContent=p.mood?'✦ '+p.mood:'';
- $('visitorBio').textContent=p.bio||'';$('visitorAbout').textContent=p.about_me||'This member has not added an About Me yet.';
- $('visitorInterests').replaceChildren();
- if(p.interests)p.interests.split(',').map(x=>x.trim()).filter(Boolean).forEach(x=>{let s=document.createElement('span');s.className='pill';s.textContent=x;$('visitorInterests').append(s)});
- $('visitorQuote').textContent=p.favorite_quote||'';show('visitorQuote',!!p.favorite_quote);
- show('visitorSpace',true);window.scrollTo({top:$('visitorSpace').offsetTop-80,behavior:'smooth'});
-}
-async function loadFeed(){
- $('feed').textContent='Loading posts…';
- const {data,error}=await sb.from('posts').select('id,user_id,body,created_at').order('created_at',{ascending:false}).limit(60);
- if(error){$('feed').textContent='Could not load posts: '+error.message;return;}
- if(!data.length){$('feed').textContent='No posts yet. Be the first to share something kind.';return;}
- const ids=[...new Set(data.map(x=>x.user_id))];
- const r=await sb.from('profiles').select('id,display_name,avatar_path').in('id',ids);
- const people=Object.fromEntries((r.data||[]).map(x=>[x.id,x]));
- $('feed').replaceChildren();
- data.forEach(p=>{
-  const el=document.createElement('article');el.className='post';
-  const person=people[p.user_id]||{};
-  const name=document.createElement('div');name.className='postname';name.textContent=person.display_name||'Community member';
-  const time=document.createElement('div');time.className='tiny';time.textContent=new Date(p.created_at).toLocaleString();
-  const body=document.createElement('p');body.textContent=p.body;
-  el.append(name,time,body);
-  if(p.user_id===user.id){const del=document.createElement('button');del.className='danger';del.textContent='Delete';del.onclick=async()=>{if(confirm('Delete this post?')){const x=await sb.from('posts').delete().eq('id',p.id);if(x.error)alert(x.error.message);else loadFeed();}};el.append(del);}
-  $('feed').append(el);
- });
-}
-async function loadMyPosts(){
- const {data,error}=await sb.from('posts').select('id,body,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(30);
- $('myPosts').replaceChildren();
- if(error){$('myPosts').textContent=error.message;return;}
- if(!data.length){$('myPosts').textContent='Your updates will appear here.';return;}
- data.forEach(p=>{const a=document.createElement('article');a.className='post';const t=document.createElement('div');t.className='tiny';t.textContent=new Date(p.created_at).toLocaleString();const b=document.createElement('p');b.textContent=p.body;a.append(t,b);$('myPosts').append(a);});
+async function feed(){
+  $('feed').textContent='Loading…';
+  let {data,error}=await sb.from('posts').select('id,user_id,body,created_at').order('created_at',{ascending:false}).limit(50);
+  if(error){$('feed').textContent=error.message;return}
+  if(!data.length){$('feed').textContent='No posts yet. Be the first to share something kind.';return}
+  let ids=[...new Set(data.map(x=>x.user_id))],r=await sb.from('profiles').select('id,display_name').in('id',ids);
+  let names=Object.fromEntries((r.data||[]).map(x=>[x.id,x.display_name]));
+  $('feed').replaceChildren();
+  for(let p of data){
+    let a=document.createElement('article');a.className='post';
+    let h=document.createElement('strong');h.textContent=names[p.user_id]||'Community member';
+    let t=document.createElement('div');t.className='post-meta';t.textContent=new Date(p.created_at).toLocaleString();
+    let b=document.createElement('p');b.textContent=p.body;a.append(h,t,b);
+    if(p.user_id===user.id){
+      let d=document.createElement('button');d.className='danger';d.textContent='Delete';
+      d.onclick=async()=>{if(confirm('Delete this post?')){let x=await sb.from('posts').delete().eq('id',p.id);if(x.error)alert(x.error.message);else feed()}};
+      a.append(d)
+    }
+    $('feed').append(a)
+  }
 }
 async function publish(){
- const body=$('postText').value.trim();if(!body){say('postMsg','Write something first.');return;}
- const {error}=await sb.from('posts').insert({user_id:user.id,body});
- if(error)say('postMsg',error.message);else{$('postText').value='';say('postMsg','Posted! ♡');loadFeed();loadMyPosts();}
+  let body=$('postText').value.trim();if(!body)return say('postMsg','Write something first.');
+  let {error}=await sb.from('posts').insert({user_id:user.id,body});
+  if(error)say('postMsg',error.message);else{$('postText').value='';say('postMsg','Post published.');feed()}
 }
-function bind(){
- $('signupTab').onclick=()=>{show('signup',true);show('login',false);$('signupTab').classList.remove('secondary');$('loginTab').classList.add('secondary');};
- $('loginTab').onclick=()=>{show('signup',false);show('login',true);$('loginTab').classList.remove('secondary');$('signupTab').classList.add('secondary');};
- $('create').onclick=signup;$('enter').onclick=login;$('saveProfile').onclick=saveProfile;
- $('myTab').onclick=()=>tab('my');$('membersTab').onclick=()=>tab('members');$('feedTab').onclick=()=>tab('feed');
- $('memberSearch').oninput=renderMembers;$('backMembers').onclick=()=>show('visitorSpace',false);
- $('publish').onclick=publish;$('refresh').onclick=loadFeed;
- $('logout').onclick=async()=>{await sb.auth.signOut();user=null;profile=null;views();};
+async function save(){
+  let n=$('editName').value.trim(),b=$('editBio').value.trim();
+  if(!n)return say('profileMsg','Display name is required.');
+  let {error}=await sb.from('profiles').upsert({id:user.id,display_name:n,bio:b});
+  if(error)say('profileMsg',error.message);else{say('profileMsg','Profile saved.');signed(user)}
 }
-function start(){
- if(!window.supabase){show('auth',true);say('authMsg','Supabase library did not load. Check your internet connection and reload.');return;}
- sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
- bind();views();
- sb.auth.getSession().then(({data,error})=>{if(error){say('authMsg',error.message);return;}if(data.session)enterApp(data.session.user);});
- sb.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT'){user=null;profile=null;views();}});
-}
-start();
+$('connect').onclick=connect;
+$('clear').onclick=()=>{localStorage.removeItem(U);localStorage.removeItem(K);$('url').value='';$('key').value='';say('setupMsg','Saved details cleared.')};
+$('signupTab').onclick=()=>{show('signup',true);show('login',false);$('signupTab').classList.remove('secondary');$('loginTab').classList.add('secondary')};
+$('loginTab').onclick=()=>{show('signup',false);show('login',true);$('loginTab').classList.remove('secondary');$('signupTab').classList.add('secondary')};
+$('create').onclick=signup;$('enter').onclick=login;$('publish').onclick=publish;$('refresh').onclick=feed;$('save').onclick=save;
+$('logout').onclick=async()=>{await sb.auth.signOut();user=null;prof=null;views()};
+if($('url').value&&$('key').value)connect();
 })();
 </script>
 </body>
