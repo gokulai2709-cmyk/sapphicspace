@@ -71,15 +71,26 @@ button{border:0;border-radius:11px;padding:10px 14px;background:linear-gradient(
  .dashboard-right{display:block}
 }
 
+.femme-settings {
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  margin: 3px;
+  flex: 0 0 43px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#e94b5b,#f59b45,#f5dc58,#43b879,#438ee8,#a66be0);
+  color: white;
+  font-size: 27px;
+  font-weight: 900;
+  border: 2px solid white;
+  box-shadow: 0 0 12px #d78cff;
+  cursor: pointer;
+}
+.femme-settings:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff83c2;
+}
 </style>
-</head>
-<body>
-<div class="rainbow"></div>
-<header>
-  <img src="file_0000000080fc820791e623deb35ce1df.png" alt="VYSSARA HUB Logo" class="brand-logo">
-  <div class="brand">VYSSARA <span>HUB</span></div>
-  <div class="small" style="margin-left:auto">your corner of the internet ♡</div>
-</header>
 <main class="wrap">
 <section id="auth" class="card hidden">
 <h1><span style="color:var(--pink)">Welcome</span> to VYSSARA HUB ✦</h1>
@@ -134,10 +145,13 @@ Your identity. Your universe. ♡
 <div class="row">
 <div>
 <div class="pixel">✧ WELCOME BACK ✧</div>
-<h1 style="margin:2px 0">Your little corner of the web</h1>
+<h1>Welcome to Your VYSSARA Haven ✧</h1>
 <div id="hello" class="small"></div>
 </div>
-<button id="logout" class="secondary fit">Log out</button>
+<div class="row" style="flex:0 0 auto;gap:6px">
+  <button id="settingsBtn" class="femme-settings" title="My Universe">♀</button>
+  <button id="logout" class="secondary fit">Leave the Haven</button>
+</div>
 </div>
 
 <div class="tabs">
@@ -389,7 +403,7 @@ Your identity. Your universe. ♡
       </div>
 
       <div class="lounge-panel">
-        <h3>✧ Our Little Rules</h3>
+        <h3>✧ Haven Etiquette ✧</h3>
         <p class="lounge-note">
           ♡ Be kind and respectful.<br>
           ♡ Respect everyone's boundaries.<br>
@@ -417,7 +431,7 @@ Your identity. Your universe. ♡
 
 <!-- RIGHT SIDEBAR -->
 <aside class="dashboard-side dashboard-right">
-<h3>♡ COMMUNITY BOARD</h3>
+<h3>✧ THE VYSSARA GAZETTE ✧</h3>
 <p class="small">A little space for everyone to shine.</p>
 
 <div class="card" style="padding:11px;margin:10px 0">
@@ -425,7 +439,7 @@ Your identity. Your universe. ♡
 <p class="small" style="margin:7px 0 0">You belong here. Be kind to yourself and others.</p>
 </div>
 
-<h3>✦ TRENDING</h3>
+<h3>✦ HOT ON VYSSARA ✦</h3>
 <div class="pill">#Pride</div>
 <div class="pill">#Music</div>
 <div class="pill">#Friendship</div>
