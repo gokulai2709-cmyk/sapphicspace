@@ -112,9 +112,9 @@ Your identity. Your universe. ♡
 </div>
 
 <h3 style="margin-top:20px">♡ QUICK LINKS</h3>
-<a class="side-link" href="#" onclick="document.getElementById('myTab').click();return false;">✿ My Space</a>
-<a class="side-link" href="#" onclick="document.getElementById('membersTab').click();return false;">♡ Members</a>
-<a class="side-link" href="#" onclick="document.getElementById('feedTab').click();return false;">✧ Community</a>
+<a class="side-link" href="#" onclick="document.getElementById('myTab').click();return false;">✿ Femme</a>
+<a class="side-link" href="#" onclick="document.getElementById('membersTab').click();return false;">♡ Gaydar</a>
+<a class="side-link" href="#" onclick="document.getElementById('feedTab').click();return false;">✧ Lavender Lounge</a>
 
 <h3 style="margin-top:20px">✦ SPACE VIBES</h3>
 <p class="small">Be yourself. Find your people. Make memories.</p>
@@ -141,10 +141,9 @@ Your identity. Your universe. ♡
 </div>
 
 <div class="tabs">
-<button id="myTab">My Space</button>
-<button id="membersTab" class="secondary">Members</button>
-<button id="feedTab" class="secondary">Community</button>
-</div>
+<button id="myTab">Femme</button>
+<button id="membersTab" class="secondary">Gaydar</button>
+<button id="feedTab" class="secondary">Lavender Lounge</button>
 </div>
 
 <section id="mySpace">
@@ -239,24 +238,180 @@ Your identity. Your universe. ♡
 </div>
 </section>
 
-<section id="community" class="hidden">
-<div class="layout">
-<div class="card">
-<h2>✧ Share an update</h2>
-<textarea id="postText" maxlength="2000" placeholder="What's on your mind?"></textarea>
-<button id="publish">Publish post</button>
-<div id="postMsg" class="msg"></div>
-<h2 style="margin-top:20px">Community feed</h2>
-<button id="refresh" class="secondary">Refresh feed</button>
-<div id="feed" class="muted">Loading posts…</div>
-</div>
 
-<div class="card">
-<h2>♡ Community note</h2>
-<p class="small">Be kind, respect boundaries, and do not post someone else's private information or images without permission. Report harmful behavior to the community moderators.</p>
-</div>
+<section id="community" class="hidden">
+<style>
+.lavender-lounge {
+  color: #f8eaff;
+  background: linear-gradient(145deg,#21132f,#301a43,#1b1228);
+  border: 1px solid #8055a0;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 0 22px #a34dca30;
+}
+.lounge-heading {
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #a66bca;
+  border-radius: 14px;
+  background: linear-gradient(120deg,#49245f,#733b85,#432052);
+  box-shadow: 0 0 18px #c46bff35;
+}
+.lounge-heading h1 {
+  color: #ffd4f2;
+  margin: 0 0 8px;
+  text-shadow: 0 0 12px #e68bff;
+}
+.lounge-heading p {
+  color: #f1dafa;
+  margin: 0;
+}
+.lounge-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 15px 0;
+}
+.lounge-tag {
+  background: #402650;
+  color: #ffd9f5;
+  border: 1px solid #a66bc1;
+  border-radius: 20px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+.lounge-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 230px;
+  gap: 14px;
+}
+.lounge-panel {
+  background: linear-gradient(145deg,#30203f,#24172f);
+  border: 1px solid #704986;
+  border-radius: 13px;
+  padding: 15px;
+  margin-bottom: 14px;
+  box-shadow: 0 5px 18px #10081970;
+}
+.lounge-panel h2,
+.lounge-panel h3 {
+  color: #f4bde8;
+  margin-top: 0;
+}
+.lounge-panel textarea {
+  width: 100%;
+  min-height: 100px;
+  box-sizing: border-box;
+  background: #1c1228;
+  color: white;
+  border: 1px solid #9b6ab4;
+  border-radius: 10px;
+  padding: 12px;
+}
+.lounge-panel button {
+  background: linear-gradient(100deg,#a64dd0,#df70bd);
+  color: white;
+  border: 1px solid #e6a4ef;
+  border-radius: 9px;
+  padding: 10px 17px;
+  margin-top: 9px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.lounge-panel button.secondary {
+  background: #49305c;
+  border-color: #986bb0;
+}
+.lounge-note {
+  color: #d9c5e9;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#feed {
+  color: #f5eaff;
+}
+@media(max-width:700px) {
+  .lounge-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<div class="lavender-lounge">
+
+  <div class="lounge-heading">
+    <div style="font-size:13px;color:#f8c9ed;letter-spacing:3px">
+      ♡ VYSSARA COMMUNITY ♡
+    </div>
+    <h1>✧ The Lavender Lounge ✧</h1>
+    <p>A little corner for conversations, advice, stories, and sisterhood.</p>
+  </div>
+
+  <div class="lounge-tags">
+    <span class="lounge-tag">♡ Girliepop</span>
+    <span class="lounge-tag">✧ Kilig</span>
+    <span class="lounge-tag">☕ TeaTime</span>
+    <span class="lounge-tag">♡ Besties</span>
+    <span class="lounge-tag">✿ Sapphicore</span>
+    <span class="lounge-tag">✨ Glowup</span>
+    <span class="lounge-tag">🌈 Queertopia</span>
+  </div>
+
+  <div class="lounge-grid">
+
+    <div>
+      <div class="lounge-panel">
+        <h2>♡ What's on your mind, darling?</h2>
+        <p class="lounge-note">
+          Share your thoughts, little moments, stories, or anything
+          you'd love the VYSSARA community to hear.
+        </p>
+        <textarea id="postText" maxlength="2000"
+          placeholder="Spill your thoughts here, lovely..."></textarea>
+        <button id="publish">♡ Share with the Lounge</button>
+        <div id="postMsg" class="msg"></div>
+      </div>
+
+      <div class="lounge-panel">
+        <h2>✧ The Lounge Feed</h2>
+        <button id="refresh" class="secondary">↻ Refresh feed</button>
+        <div id="feed" class="muted">Loading posts…</div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="lounge-panel">
+        <h3>♡ Lounge Vibes</h3>
+        <p class="lounge-note">
+          A safe space to be yourself, meet new people,
+          share experiences, and find your community.
+        </p>
+      </div>
+
+      <div class="lounge-panel">
+        <h3>✧ Our Little Rules</h3>
+        <p class="lounge-note">
+          ♡ Be kind and respectful.<br>
+          ♡ Respect everyone's boundaries.<br>
+          ♡ Protect personal information.<br>
+          ♡ Ask permission before sharing another person's photos.<br>
+          ♡ Report harmful behavior to moderators.
+        </p>
+      </div>
+
+      <div class="lounge-panel">
+        <h3>💜 A Little Reminder</h3>
+        <p class="lounge-note">
+          You belong here. Your voice matters.
+          Be proud of who you are.
+        </p>
+      </div>
+    </aside>
+
+  </div>
 </div>
 </section>
+
 
 </div>
 
